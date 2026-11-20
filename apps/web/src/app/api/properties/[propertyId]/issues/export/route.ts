@@ -70,7 +70,7 @@ export async function GET(request: Request, props: { params: Promise<{ propertyI
   }
 
   const workbook = new ExcelJS.Workbook();
-  workbook.creator = "A11yComply";
+  workbook.creator = "Inclusight";
   const sheet = workbook.addWorksheet("Issues");
   sheet.columns = COLUMNS.map((column) => ({
     header: column,
@@ -94,7 +94,7 @@ export async function GET(request: Request, props: { params: Promise<{ propertyI
     ["Note", AUTOMATED_TESTING_DISCLAIMER],
     [
       "Note",
-      "A11yComply assists accessibility audits and compliance. It does not certify compliance.",
+      "Inclusight assists accessibility audits and compliance. It does not certify compliance.",
     ],
   ]);
   const buffer = await workbook.xlsx.writeBuffer();

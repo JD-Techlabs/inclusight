@@ -39,7 +39,7 @@ export function readScanConfig(stored: unknown): ScanConfig {
 
 /** Identifiable crawler user-agent (spec §16). */
 export function botUserAgent(appUrl: string): string {
-  return `A11yComplyBot/1.0 (+${appUrl.replace(/\/+$/, "")}/bot)`;
+  return `InclusightBot/1.0 (+${appUrl.replace(/\/+$/, "")}/bot)`;
 }
 
-export const BOT_ROBOTS_TOKEN = "a11ycomplybot";
+export const BOT_ROBOTS_TOKEN = "inclusightbot";

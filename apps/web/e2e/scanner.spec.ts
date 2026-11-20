@@ -46,7 +46,7 @@ test("add property → verify → scan → triage → re-scan detects fixed and 
   });
 
   await test.step("verify the domain with the well-known file", async () => {
-    await page.getByLabel("File at /.well-known/a11ycomply.txt").check();
+    await page.getByLabel("File at /.well-known/inclusight.txt").check();
     const token = (await page.getByTestId("verification-value").innerText()).trim();
     await page.getByRole("button", { name: "Verify domain" }).click();
     await expect(page.getByRole("alert").filter({ hasText: "could not be loaded" })).toBeVisible(); // file not there yet

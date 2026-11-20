@@ -19,7 +19,7 @@ export function buildPlatformInventory(
       title: "Platform inventory",
       period: `As on ${formatDate(ctx.generatedAt)}`,
       notes: [
-        "This inventory lists the digital platforms registered in A11yComply. Add any platform that is not listed (for example mobile apps, investor portals or document collections) before submitting it.",
+        "This inventory lists the digital platforms registered in Inclusight. Add any platform that is not listed (for example mobile apps, investor portals or document collections) before submitting it.",
       ],
     }),
     organisation: organisationBlock(ctx.org),

@@ -24,7 +24,7 @@ describe.skipIf(!runner && !required)("generated report PDFs", () => {
 
   beforeAll(async () => {
     browser = await chromium.launch();
-    dir = mkdtempSync(join(tmpdir(), "a11ycomply-pdfua-"));
+    dir = mkdtempSync(join(tmpdir(), "inclusight-pdfua-"));
   });
   afterAll(async () => {
     await browser?.close();

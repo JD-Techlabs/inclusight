@@ -7,7 +7,7 @@ import { getThemePreference } from "@/lib/theme";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: { default: "A11yComply", template: "%s · A11yComply" },
+  title: { default: "Inclusight", template: "%s · Inclusight" },
   description:
     "Accessibility compliance workspace for SEBI-regulated firms. Assists audits and compliance; does not certify compliance.",
 };

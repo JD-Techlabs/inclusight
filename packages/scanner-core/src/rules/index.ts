@@ -9,7 +9,7 @@ import type { CustomFinding } from "./types";
 export type { CustomFinding } from "./types";
 
 /**
- * A11yComply custom rules (spec §7.4). Criteria and kind (violation / review) come from
+ * Inclusight custom rules (spec §7.4). Criteria and kind (violation / review) come from
  * compliance-data's rules.yaml; target size (2.5.8) is covered by axe's own target-size rule.
  */
 export type CustomRule = {
@@ -120,7 +120,7 @@ export async function runCustomRules(
     violations.push({
       id: rule.id,
       impact: rule.impact,
-      tags: ["a11ycomply-custom"],
+      tags: ["inclusight-custom"],
       help: rule.help,
       description: rule.description,
       helpUrl: helpUrlFor(rule.id),

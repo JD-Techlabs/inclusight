@@ -1,4 +1,4 @@
-# A11yComply India — Product & Build Specification
+# Inclusight India — Product & Build Specification
 
 > **Working title.** Check trademark and domain availability before launch.
 > Accessibility compliance platform for SEBI-regulated entities (brokers, AMCs, depositories, investment advisers, research analysts, exchanges), expanding later to RBI/IRDAI-regulated firms and EU (EAA) exporters.
@@ -101,7 +101,7 @@
 apps/
   web/                 # Next.js app: dashboard, API routes, public scanner, marketing pages
   worker/              # BullMQ workers: crawl, scan, pdf, mobile, ai, reports
-  cli/                 # npm package "a11ycomply" for CI pipelines
+  cli/                 # npm package "inclusight" for CI pipelines
 packages/
   db/                  # Drizzle schema, migrations, typed queries
   scanner-core/        # Crawler, axe runner, custom rules, fingerprinting, normalisation
@@ -164,7 +164,7 @@ docs/
 
 ### 7.1 Property setup
 - Add property: name, base URL, investor-facing yes/no.
-- **Domain verification** before full crawls (prevents scanning sites the customer doesn't own): DNS TXT record **or** meta tag **or** file at `/.well-known/a11ycomply.txt`.
+- **Domain verification** before full crawls (prevents scanning sites the customer doesn't own): DNS TXT record **or** meta tag **or** file at `/.well-known/inclusight.txt`.
 - Unverified properties: only single-page scans of the exact URL, rate-limited.
 
 ### 7.2 Crawl config
@@ -238,7 +238,7 @@ All report templates live in `compliance-data/report-templates/` (HTML + JSON sc
 - **Schedules:** daily/weekly/monthly per property (plan-based).
 - **Regression detection:** new issues since the last scan, reopened issues (previously fixed), fixed issues. Email + in-app notifications; optional Slack/MS Teams webhook.
 - **CLI (`apps/cli`, published as an npm package):**
-  - `a11ycomply scan <url> [--fail-on serious] [--baseline issues.json] [--format json|sarif|junit]`
+  - `inclusight scan <url> [--fail-on serious] [--baseline issues.json] [--format json|sarif|junit]`
   - Runs locally with Playwright (no account needed for basic use) or uploads results with `--api-key`.
   - Baseline support: only fail on **new** issues.
 - **GitHub Action** wrapping the CLI, posting a summary comment on PRs.
@@ -320,7 +320,7 @@ Annual billing discount 15–20%. All limits stored in a `plans` config, not cod
 - 2FA mandatory for owner/admin roles; session timeout; device/session list.
 - **Audit log** for all sensitive actions (status changes, false positives, report generation, sign-offs, settings, API key creation).
 - Screenshots: PII redaction defaults on for authenticated scans; retention limit (default 90 days).
-- Scanning ethics: only verified domains get full crawls; identifiable user-agent (`A11yComplyBot/1.0 (+https://<domain>/bot)`); polite rate limits.
+- Scanning ethics: only verified domains get full crawls; identifiable user-agent (`InclusightBot/1.0 (+https://<domain>/bot)`); polite rate limits.
 - Backups: daily DB backups, tested restore, 30-day retention.
 - Prepare for: VAPT by a CERT-In empanelled auditor before first enterprise customer; ISO 27001 roadmap later.
 - Never log secrets, cookies, or form values.

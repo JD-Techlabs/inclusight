@@ -7,7 +7,7 @@ export function SiteFooter() {
       <p className="mx-auto flex max-w-6xl items-start gap-2 text-xs leading-relaxed text-muted-foreground">
         <Info className="mt-0.5 size-3.5 shrink-0" />
         <span>
-          A11yComply assists accessibility audits and compliance. It does not certify compliance.
+          Inclusight assists accessibility audits and compliance. It does not certify compliance.
           Automated checks find only part of all accessibility issues; manual testing is required.
         </span>
       </p>

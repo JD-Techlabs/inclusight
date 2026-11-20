@@ -2163,7 +2163,7 @@
       "type": "platform_inventory",
       "folder": "platform-inventory",
       "title": "Platform inventory",
-      "summary": "All digital platforms registered in A11yComply, who is responsible for each, and their accessibility status.",
+      "summary": "All digital platforms registered in Inclusight, who is responsible for each, and their accessibility status.",
       "formats": [
         "pdf",
         "xlsx"

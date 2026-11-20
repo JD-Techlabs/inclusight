@@ -18,7 +18,7 @@ export const SCAN_MODE_LABELS: Record<string, string> = {
 export const VERIFICATION_METHOD_LABELS: Record<string, string> = {
   dns_txt: "DNS TXT record",
   meta_tag: "Meta tag on the home page",
-  well_known_file: "File at /.well-known/a11ycomply.txt",
+  well_known_file: "File at /.well-known/inclusight.txt",
 };
 
 export const VIEWPORT_LABELS: Record<string, string> = {

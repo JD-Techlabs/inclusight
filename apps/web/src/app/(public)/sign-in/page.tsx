@@ -42,7 +42,7 @@ export default async function SignInPage(props: {
         </div>
       </Card>
       <p className="mt-6 text-center text-sm text-muted-foreground">
-        New to A11yComply?{" "}
+        New to Inclusight?{" "}
         <Link
           className="font-medium text-primary underline"
           href={withRedirect("/sign-up", carried)}

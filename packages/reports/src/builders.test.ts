@@ -106,7 +106,7 @@ describe("annual report", () => {
       ["Chief Technology Officer", ""],
     ]);
     expect(data.meta.draft).toBe(true);
-    expect(data.meta.draftNote).toMatch(/signed outside A11yComply/);
+    expect(data.meta.draftNote).toMatch(/signed outside Inclusight/);
   });
 
   it("validates financial years", () => {

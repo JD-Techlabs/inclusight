@@ -54,7 +54,7 @@ async function generateReport(page: Page, title: string, fill?: () => Promise<vo
 test("record an audit and generate all five reports as accessible PDFs", async ({ page }) => {
   const owner = await createOwnerWithOrganisation(page, "Audit Broking");
   const propertyPath = await addScannedProperty(page, "Fixture site");
-  const pdfDir = mkdtempSync(join(tmpdir(), "a11ycomply-e2e-"));
+  const pdfDir = mkdtempSync(join(tmpdir(), "inclusight-e2e-"));
   const pdfs: string[] = [];
 
   await test.step("custom rules report violations and findings that need review", async () => {
@@ -131,6 +131,7 @@ test("record an audit and generate all five reports as accessible PDFs", async (
   let auditPath = "";
   await test.step("create an audit and close it to lock the findings", async () => {
     await page.getByRole("link", { name: "Audits" }).click();
+    await expect(page.getByRole("heading", { level: 1, name: "Audits" })).toBeVisible();
     await expectNoA11yViolations(page, "audits");
     await page.getByLabel("Audit title").fill("FY 2026-27 accessibility audit");
     await page.getByLabel("Auditor's name").fill("R. Iyer");

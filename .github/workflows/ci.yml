@@ -16,14 +16,14 @@ env:
   APP_URL: http://localhost:3000
   # Throwaway value for CI only; real secrets never live in the repo.
   BETTER_AUTH_SECRET: ci-only-secret-not-used-anywhere-else-0123456789
-  DATABASE_URL: postgres://a11ycomply:a11ycomply@localhost:5432/a11ycomply
+  DATABASE_URL: postgres://inclusight:inclusight@localhost:5432/inclusight
   REDIS_URL: redis://localhost:6379
   SMTP_HOST: localhost
   SMTP_PORT: "1025"
-  EMAIL_FROM: "A11yComply <no-reply@a11ycomply.local>"
+  EMAIL_FROM: "Inclusight <no-reply@inclusight.local>"
   S3_ENDPOINT: http://localhost:9000
   S3_REGION: ap-south-1
-  S3_BUCKET: a11ycomply
+  S3_BUCKET: inclusight
   S3_ACCESS_KEY_ID: minioadmin
   S3_SECRET_ACCESS_KEY: minioadmin
   # CI only: the e2e tests scan the local fixture site on localhost.
@@ -62,12 +62,12 @@ jobs:
       postgres:
         image: postgres:17-alpine
         env:
-          POSTGRES_USER: a11ycomply
-          POSTGRES_PASSWORD: a11ycomply
-          POSTGRES_DB: a11ycomply
+          POSTGRES_USER: inclusight
+          POSTGRES_PASSWORD: inclusight
+          POSTGRES_DB: inclusight
         ports: ["5432:5432"]
         options: >-
-          --health-cmd "pg_isready -U a11ycomply" --health-interval 5s
+          --health-cmd "pg_isready -U inclusight" --health-interval 5s
           --health-timeout 3s --health-retries 20
       redis:
         image: redis:7-alpine

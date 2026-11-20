@@ -47,7 +47,7 @@ function xmpPacket(title: string, lang: string): string {
     xmlns:pdfuaid="http://www.aiim.org/pdfua/ns/id/">
    <dc:title><rdf:Alt><rdf:li xml:lang="x-default">${xml(title)}</rdf:li></rdf:Alt></dc:title>
    <dc:language><rdf:Bag><rdf:li>${xml(lang)}</rdf:li></rdf:Bag></dc:language>
-   <pdf:Producer>A11yComply</pdf:Producer>
+   <pdf:Producer>Inclusight</pdf:Producer>
    <pdfuaid:part>1</pdfuaid:part>
   </rdf:Description>
  </rdf:RDF>
@@ -119,7 +119,7 @@ export async function makePdfUa(
   doc.catalog.set(PDFName.of("Metadata"), doc.context.register(metadata));
   doc.setTitle(info.title, { showInWindowTitleBar: true });
   doc.setLanguage(info.lang);
-  doc.setProducer("A11yComply");
+  doc.setProducer("Inclusight");
   addRoleMap(doc);
 
   for (const page of doc.getPages()) {

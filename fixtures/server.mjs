@@ -4,7 +4,7 @@
 // State files (git-ignored) in fixtures/.state/ change behaviour at runtime, so tests can
 // simulate a customer fixing their site and verifying their domain:
 //   version.txt    "v1" (default) or "v2" — v2 fixes the home-page hero image and adds a new issue
-//   well-known.txt served at /.well-known/a11ycomply.txt (domain verification)
+//   well-known.txt served at /.well-known/inclusight.txt (domain verification)
 import { readFileSync } from "node:fs";
 import { createServer } from "node:http";
 import { dirname, join } from "node:path";
@@ -130,7 +130,7 @@ function route(path, host) {
       `<?xml version="1.0"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls}</urlset>`,
     ];
   }
-  if (path === "/.well-known/a11ycomply.txt") {
+  if (path === "/.well-known/inclusight.txt") {
     const token = readState("well-known.txt", "");
     return token ? ["text/plain", token] : null;
   }

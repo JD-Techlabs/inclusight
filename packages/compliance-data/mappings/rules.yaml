@@ -1,4 +1,4 @@
-# Rule → criteria mapping (spec §8). Every axe-core rule and every A11yComply custom rule is
+# Rule → criteria mapping (spec §8). Every axe-core rule and every Inclusight custom rule is
 # listed here; scans store an issue's criteria from this file, not from code.
 #
 # kind:

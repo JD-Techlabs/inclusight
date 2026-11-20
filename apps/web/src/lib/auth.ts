@@ -18,7 +18,7 @@ import { env } from "./env";
 import { sendEmail } from "./mailer";
 import { ac, orgRoles, ROLE_LABELS, parseRole } from "./roles";
 
-const APP_NAME = "A11yComply";
+const APP_NAME = "Inclusight";
 
 function createAuth() {
   const e = env();

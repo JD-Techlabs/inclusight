@@ -1,21 +1,21 @@
 # Local infrastructure.
 #   Infra only (normal dev):   docker compose -f infra/docker-compose.yml up -d
 #   Infra + web + worker:      docker compose -f infra/docker-compose.yml --profile app up -d --build
-name: a11ycomply
+name: inclusight
 
 services:
   postgres:
     image: postgres:17-alpine
     environment:
-      POSTGRES_USER: a11ycomply
-      POSTGRES_PASSWORD: a11ycomply
-      POSTGRES_DB: a11ycomply
+      POSTGRES_USER: inclusight
+      POSTGRES_PASSWORD: inclusight
+      POSTGRES_DB: inclusight
     ports:
       - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U a11ycomply -d a11ycomply"]
+      test: ["CMD-SHELL", "pg_isready -U inclusight -d inclusight"]
       interval: 5s
       timeout: 3s
       retries: 20
@@ -57,7 +57,7 @@ services:
       dockerfile: infra/docker/worker.Dockerfile
     command: ["pnpm", "--filter", "@app/db", "db:migrate"]
     environment:
-      DATABASE_URL: postgres://a11ycomply:a11ycomply@postgres:5432/a11ycomply
+      DATABASE_URL: postgres://inclusight:inclusight@postgres:5432/inclusight
     depends_on:
       postgres:
         condition: service_healthy
@@ -73,14 +73,14 @@ services:
         required: false
     environment:
       APP_URL: http://localhost:3000
-      DATABASE_URL: postgres://a11ycomply:a11ycomply@postgres:5432/a11ycomply
+      DATABASE_URL: postgres://inclusight:inclusight@postgres:5432/inclusight
       REDIS_URL: redis://redis:6379
       SMTP_HOST: mailpit
       SMTP_PORT: "1025"
-      EMAIL_FROM: "A11yComply <no-reply@a11ycomply.local>"
+      EMAIL_FROM: "Inclusight <no-reply@inclusight.local>"
       S3_ENDPOINT: http://minio:9000
       S3_REGION: ap-south-1
-      S3_BUCKET: a11ycomply
+      S3_BUCKET: inclusight
       S3_ACCESS_KEY_ID: minioadmin
       S3_SECRET_ACCESS_KEY: minioadmin
     ports:
@@ -98,11 +98,11 @@ services:
       dockerfile: infra/docker/worker.Dockerfile
     environment:
       APP_URL: http://localhost:3000
-      DATABASE_URL: postgres://a11ycomply:a11ycomply@postgres:5432/a11ycomply
+      DATABASE_URL: postgres://inclusight:inclusight@postgres:5432/inclusight
       REDIS_URL: redis://redis:6379
       S3_ENDPOINT: http://minio:9000
       S3_REGION: ap-south-1
-      S3_BUCKET: a11ycomply
+      S3_BUCKET: inclusight
       S3_ACCESS_KEY_ID: minioadmin
       S3_SECRET_ACCESS_KEY: minioadmin
     depends_on:

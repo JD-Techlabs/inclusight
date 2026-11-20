@@ -28,12 +28,12 @@
 <h2>Methodology</h2>
 <p>
   Automated testing: each platform in scope was crawled and every page was tested with axe-core and
-  the A11yComply custom rules, on desktop and mobile screen sizes. Identical issues on pages built
+  the Inclusight custom rules, on desktop and mobile screen sizes. Identical issues on pages built
   from the same template were grouped into one finding.
 </p>
 <p>
   Manual testing: criteria that automated checks cannot decide were tested by hand using the
-  A11yComply test procedures (keyboard-only use, screen readers, zoom and reflow, captions, forms
+  Inclusight test procedures (keyboard-only use, screen readers, zoom and reflow, captions, forms
   and error handling), with a result, notes and evidence recorded for each criterion.
 </p>
 {% for paragraph in audit.methodology %}<p>{{ paragraph }}</p>{% endfor %}

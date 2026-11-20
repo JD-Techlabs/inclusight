@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { ALLOW_ALL, isAllowedByRobots, parseRobots } from "./robots";
 
-const AGENT = "a11ycomplybot";
+const AGENT = "inclusightbot";
 
 describe("robots.txt", () => {
   it("allows everything when there are no rules", () => {
@@ -28,7 +28,7 @@ describe("robots.txt", () => {
       Disallow: /
 
       User-agent: Googlebot
-      User-agent: A11yComplyBot
+      User-agent: InclusightBot
       Disallow: /admin
     `);
     expect(isAllowedByRobots(rules, "https://x.test/about", AGENT)).toBe(true);

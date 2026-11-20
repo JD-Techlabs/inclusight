@@ -98,7 +98,7 @@ describe("domain verification", () => {
   });
 
   it("accepts the meta tag in any attribute order", async () => {
-    const html = `<head><meta content="${token}" name="a11ycomply-verification"></head>`;
+    const html = `<head><meta content="${token}" name="inclusight-verification"></head>`;
     const result = await checkVerification("meta_tag", "https://x.test/", token, {
       fetchText: fetchReturning(html),
       resolveTxt: noDns,
@@ -109,7 +109,7 @@ describe("domain verification", () => {
   it("accepts a DNS TXT record split into chunks", async () => {
     const result = await checkVerification("dns_txt", "https://x.test/", token, {
       fetchText: fetchReturning(""),
-      resolveTxt: async () => [["v=spf1 -all"], ["a11ycomply-verification=", token]],
+      resolveTxt: async () => [["v=spf1 -all"], ["inclusight-verification=", token]],
     });
     expect(result.verified).toBe(true);
   });
@@ -131,7 +131,7 @@ describe("helpers", () => {
 
   it("reads meta content and builds the bot user-agent", () => {
     expect(extractMetaContent('<meta name="X" content="1">', "x")).toBe("1");
-    expect(botUserAgent("https://app.test/")).toBe("A11yComplyBot/1.0 (+https://app.test/bot)");
+    expect(botUserAgent("https://app.test/")).toBe("InclusightBot/1.0 (+https://app.test/bot)");
   });
 
   it("falls back to defaults for invalid stored scan config", () => {

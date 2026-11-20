@@ -53,6 +53,9 @@ async function waitForAnimations(page: Page) {
  * in CLAUDE.md); we hold ourselves to zero violations of any impact for WCAG A/AA rules.
  */
 export async function expectNoA11yViolations(page: Page, screen: string) {
+  // After an in-app navigation Next.js inserts the new <title> just after the page content, so
+  // wait for it. A page that never gets a title still fails here (WCAG 2.4.2).
+  await expect(page, `${screen} has a page title`).toHaveTitle(/\S/);
   for (const colorScheme of ["light", "dark"] as const) {
     await page.emulateMedia({ colorScheme });
     await settleAnimations(page);

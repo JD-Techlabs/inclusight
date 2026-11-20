@@ -34,7 +34,7 @@ export type ScanPageOptions = {
   viewport: ViewportName;
   waitSelector?: string | null;
   screenshot?: boolean;
-  /** Run the A11yComply custom rules (spec §7.4) after axe and the screenshot. */
+  /** Run the Inclusight custom rules (spec §7.4) after axe and the screenshot. */
   customRules?: boolean;
   timeoutMs?: number;
   /** SSRF guard applied to every request the page makes (sub-resources included). */

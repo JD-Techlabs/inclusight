@@ -1,5 +1,24 @@
 # Progress
 
+## Product renamed to Inclusight ✅ (awaiting review)
+
+- "A11yComply" is now **Inclusight** everywhere: screens, emails, reports, crawler user-agent,
+  domain-verification names, package names and local/CI infrastructure (D-051).
+- How to see it: `pnpm dev`, then look at the brand in the sidebar and the browser tab title. A
+  property's "Verify your domain" panel now offers `/.well-known/inclusight.txt`.
+- Local data was carried over: the database was dumped and restored into the new Postgres, and all
+  stored files were copied to the new bucket. The old `a11ycomply_*` Docker volumes are kept as a
+  backup and can be removed with `docker volume rm a11ycomply_postgres-data a11ycomply_minio-data`.
+- Checks: format, lint, typecheck, 198 unit tests, the build and all 15 e2e tests pass. The axe
+  helper now waits for the page title before checking: after an in-app navigation Next.js adds
+  the new `<title>` just after the page content, which made the Audits check fail at random.
+- Known issues:
+  - Any `pnpm dev` started before the rename must be restarted to pick up the new `.env` values.
+  - In one e2e run the dev server started by Playwright recompiled every ~0.6 s with no source
+    file changing, and each recompile reloaded the open page (14 tests failed). It did not happen
+    again with fresh servers and the cause is not known. If it comes back, stop every dev
+    server, then re-run.
+
 ## UI refresh (requested between Phase 2 and Phase 3) ✅ (awaiting review)
 
 ### Done
@@ -156,7 +175,7 @@ Phase 3 — Authenticated scans, monitoring, CI.
 
 - **Properties**: add, list, settings (crawl limits, include/exclude globs, query strings,
   viewports, wait selector, robots.txt), delete. Owner/admin only; all audit-logged.
-- **Domain verification**: DNS TXT, meta tag, or `/.well-known/a11ycomply.txt`. Unverified
+- **Domain verification**: DNS TXT, meta tag, or `/.well-known/inclusight.txt`. Unverified
   properties can only run single-page scans of the exact URL (10 per hour per organisation).
 - **Crawler** (`packages/scanner-core`): robots.txt → sitemaps (incl. indexes) → breadth-first
   link discovery; same-host only; page cap, depth cap, include/exclude, query-string handling;
@@ -201,7 +220,7 @@ set `SCANNER_ALLOW_PRIVATE_HOSTS=true` in `.env` — local development only.
 ### How to test manually
 
 1. Sign in as an owner → **Properties** → add `http://localhost:4100` ("Fixture site").
-2. Under "Verify your domain" choose **File at /.well-known/a11ycomply.txt**, copy the value
+2. Under "Verify your domain" choose **File at /.well-known/inclusight.txt**, copy the value
    into `fixtures/.state/well-known.txt` (create the folder), select **Verify domain**.
 3. Optional: **Settings** → lower "Maximum pages" for a quicker run (default 200).
 4. **Start full scan** → watch progress → open **View issues**. The article chart image is one

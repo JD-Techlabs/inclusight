@@ -68,7 +68,7 @@ export async function GET(request: Request) {
   }
 
   const workbook = new ExcelJS.Workbook();
-  workbook.creator = "A11yComply";
+  workbook.creator = "Inclusight";
   const sheet = workbook.addWorksheet("Conformance");
   sheet.columns = COLUMNS.map((c) => ({ header: c, key: c, width: c === "Criterion" ? 50 : 22 }));
   for (const row of rows) {

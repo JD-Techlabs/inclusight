@@ -32,7 +32,7 @@ export default async function PublicLayout({ children }: { children: ReactNode }
     <div className="min-h-screen lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
       <SkipLink />
       <aside
-        aria-label="About A11yComply"
+        aria-label="About Inclusight"
         className="brand-panel relative hidden overflow-hidden lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col lg:justify-between lg:p-12"
       >
         <Brand className="text-white" />
@@ -56,7 +56,7 @@ export default async function PublicLayout({ children }: { children: ReactNode }
         </div>
         <p className="flex max-w-md items-start gap-2 text-sm text-indigo-100">
           <ShieldCheck className="mt-0.5 size-4 shrink-0" />
-          Built for SEBI-regulated entities. A11yComply assists audits and compliance; it does not
+          Built for SEBI-regulated entities. Inclusight assists audits and compliance; it does not
           certify compliance.
         </p>
       </aside>

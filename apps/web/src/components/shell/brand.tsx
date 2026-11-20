@@ -20,14 +20,14 @@ export function Brand(props: { href?: string; className?: string }) {
     return (
       <p className={classes}>
         <Mark />
-        A11yComply
+        Inclusight
       </p>
     );
   }
   return (
     <Link href={props.href} className={classes}>
       <Mark />
-      A11yComply
+      Inclusight
     </Link>
   );
 }

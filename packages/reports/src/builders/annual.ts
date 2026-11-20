@@ -40,7 +40,7 @@ export function buildAnnualReport(
       title: "Annual accessibility compliance report",
       period: `Financial year ${params.financialYear}`,
       draftNote: [
-        "Draft for review. It must be checked, completed and signed outside A11yComply before submission.",
+        "Draft for review. It must be checked, completed and signed outside Inclusight before submission.",
         formatNote,
       ]
         .filter(Boolean)
@@ -77,7 +77,7 @@ export function buildAnnualReport(
       severity: severityRows(findingRows),
     },
     grievances: {
-      note: "No grievance records are held in A11yComply for this period. Enter the number of accessibility grievances received and resolved, and the average resolution time, from your grievance register.",
+      note: "No grievance records are held in Inclusight for this period. Enter the number of accessibility grievances received and resolved, and the average resolution time, from your grievance register.",
     },
     signatories: [
       {

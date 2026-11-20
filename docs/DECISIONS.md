@@ -455,3 +455,28 @@ expectations are unchanged because these findings are the same in v1 and v2.
 - **Tests:** the axe helper now waits for animations to finish and checks every screen in both the
   light and the dark theme. New e2e checks cover the theme choice (applies at once, survives a
   reload, overrides the system setting) and the phone Menu button.
+
+## Product name (between Phase 2 and Phase 3, requested by the product owner)
+
+### D-051 Renamed from "A11yComply" to "Inclusight"
+
+- **Why:** the working name in the spec used developer jargon ("a11y") that compliance buyers do
+  not know, and "Comply" suggested the product certifies compliance, which it must never claim.
+  The product owner chose **Inclusight**.
+- **What changed:** every user-facing string (app title, brand, footer, emails, report templates,
+  PDF producer, spreadsheet creator) and every identifier derived from the name:
+  - crawler user-agent `InclusightBot/1.0 (+<APP_URL>/bot)`, robots.txt token `inclusightbot`;
+  - domain verification: file `/.well-known/inclusight.txt`, meta tag `inclusight-verification`,
+    DNS TXT prefix `inclusight-verification=`;
+  - custom axe rule tag `inclusight-custom`; root package name `inclusight`; planned npm CLI
+    `inclusight` (unclaimed on npm when checked);
+  - local and CI infra: Docker Compose project, Postgres user/password/database and the storage
+    bucket are all `inclusight`; email sender `Inclusight <no-reply@inclusight.local>`.
+- **No migration code:** there are no customers yet, so nothing needed the old verification names
+  or bot name to keep working. Properties verified before the rename stay verified (the flag is
+  stored); re-checking one now looks for the new names.
+- **Local environments:** the old Docker volumes (`a11ycomply_*`) are not used any more. Copy the
+  data across once (database dump and restore, stored files bucket to bucket) or start fresh,
+  then update `.env` from `.env.example`.
+- **Not checked:** trademark, company-name and domain availability for "Inclusight". The product
+  owner will check these before launch.

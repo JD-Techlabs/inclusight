@@ -61,7 +61,7 @@ export async function processCrawl(job: Job, ctx: WorkerContext): Promise<void> 
           status: "failed",
           finishedAt: new Date(),
           error: fullCrawl
-            ? "No pages could be found. Check that the site is reachable and robots.txt allows A11yComplyBot."
+            ? "No pages could be found. Check that the site is reachable and robots.txt allows InclusightBot."
             : "The page could not be scanned because robots.txt does not allow it, or the URL is invalid.",
         });
         return;

@@ -40,7 +40,7 @@ function aboutSheet(workbook: ExcelJS.Workbook, meta: ReportMeta, organisation: 
 /** XLSX version of a report: one sheet per table, plus an "About" sheet with the notes. */
 export async function buildReportXlsx(report: ReportData): Promise<Buffer> {
   const workbook = new ExcelJS.Workbook();
-  workbook.creator = "A11yComply";
+  workbook.creator = "Inclusight";
 
   switch (report.type) {
     case "platform_inventory": {

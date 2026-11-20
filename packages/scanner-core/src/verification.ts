@@ -5,9 +5,9 @@ import { extractMetaContent } from "./html-extract";
 export const VERIFICATION_METHODS = ["dns_txt", "meta_tag", "well_known_file"] as const;
 export type VerificationMethod = (typeof VERIFICATION_METHODS)[number];
 
-export const VERIFICATION_META_NAME = "a11ycomply-verification";
-export const VERIFICATION_WELL_KNOWN_PATH = "/.well-known/a11ycomply.txt";
-export const VERIFICATION_TXT_PREFIX = "a11ycomply-verification=";
+export const VERIFICATION_META_NAME = "inclusight-verification";
+export const VERIFICATION_WELL_KNOWN_PATH = "/.well-known/inclusight.txt";
+export const VERIFICATION_TXT_PREFIX = "inclusight-verification=";
 
 export type VerificationResult = { verified: boolean; detail: string };
 

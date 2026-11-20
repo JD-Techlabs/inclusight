@@ -1,4 +1,4 @@
-# CLAUDE.md — A11yComply India
+# CLAUDE.md — Inclusight India
 
 Accessibility compliance SaaS for SEBI-regulated financial firms. Full spec: `docs/PRODUCT_SPEC.md` (source of truth). Progress: `docs/PROGRESS.md`. Decisions: `docs/DECISIONS.md`.
 

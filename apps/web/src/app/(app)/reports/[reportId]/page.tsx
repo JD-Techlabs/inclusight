@@ -117,7 +117,7 @@ export default async function ReportPage(props: { params: Promise<{ reportId: st
             id="approvals-heading"
             icon={Signature}
             title="Approvals"
-            description="Recording an approval notes who approved the report and when. Signatures (for example the CEO's and CTO's on the annual report) are added outside A11yComply."
+            description="Recording an approval notes who approved the report and when. Signatures (for example the CEO's and CTO's on the annual report) are added outside Inclusight."
           />
           {report.signedBy.length === 0 ? (
             <p className="text-sm text-muted-foreground">No approvals recorded yet.</p>
