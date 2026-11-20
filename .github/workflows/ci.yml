@@ -1,0 +1,103 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  APP_URL: http://localhost:3000
+  # Throwaway value for CI only; real secrets never live in the repo.
+  BETTER_AUTH_SECRET: ci-only-secret-not-used-anywhere-else-0123456789
+  DATABASE_URL: postgres://a11ycomply:a11ycomply@localhost:5432/a11ycomply
+  REDIS_URL: redis://localhost:6379
+  SMTP_HOST: localhost
+  SMTP_PORT: "1025"
+  EMAIL_FROM: "A11yComply <no-reply@a11ycomply.local>"
+  S3_ENDPOINT: http://localhost:9000
+  S3_REGION: ap-south-1
+  S3_BUCKET: a11ycomply
+  S3_ACCESS_KEY_ID: minioadmin
+  S3_SECRET_ACCESS_KEY: minioadmin
+  # CI only: the e2e tests scan the local fixture site on localhost.
+  SCANNER_ALLOW_PRIVATE_HOSTS: "true"
+  NEXT_TELEMETRY_DISABLED: "1"
+
+jobs:
+  checks:
+    name: Lint, typecheck, unit tests, build
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm format:check
+      - run: pnpm lint
+      - run: pnpm typecheck
+      # Unit tests render pages and PDFs in Chromium (custom rules, reports) and validate the PDFs
+      # with veraPDF (pinned Docker image); VERAPDF_REQUIRED makes a missing validator fail.
+      - run: pnpm --filter @app/scanner-core exec playwright install --with-deps chromium
+      - run: pnpm test
+        env:
+          VERAPDF_REQUIRED: "1"
+      - run: pnpm build
+
+  e2e:
+    name: E2E and accessibility (axe)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: a11ycomply
+          POSTGRES_PASSWORD: a11ycomply
+          POSTGRES_DB: a11ycomply
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U a11ycomply" --health-interval 5s
+          --health-timeout 3s --health-retries 20
+      redis:
+        image: redis:7-alpine
+        ports: ["6379:6379"]
+      mailpit:
+        image: axllent/mailpit:latest
+        ports: ["1025:1025", "8025:8025"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # MinIO needs a start command, which GitHub service containers cannot pass.
+      - run: >-
+          docker run -d --name minio -p 9000:9000
+          -e MINIO_ROOT_USER=minioadmin -e MINIO_ROOT_PASSWORD=minioadmin
+          cgr.dev/chainguard/minio:latest server /data
+      # Same Playwright version is used by the e2e runner and the worker's scanner.
+      - run: pnpm --filter @app/web exec playwright install --with-deps chromium
+      - run: pnpm --filter @app/db db:migrate
+      # Starts web, worker and the fixture site; fails on any axe violation on a main screen.
+      - run: pnpm test:e2e
+        env:
+          VERAPDF_REQUIRED: "1"
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: apps/web/playwright-report
+          retention-days: 7

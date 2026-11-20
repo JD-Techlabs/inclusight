@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1794850551067,
+      "tag": "0000_volatile_fixer",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1794886943996,
+      "tag": "0001_fat_chamber",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1795090118069,
+      "tag": "0002_dashing_scourge",
+      "breakpoints": true
+    }
+  ]
+}

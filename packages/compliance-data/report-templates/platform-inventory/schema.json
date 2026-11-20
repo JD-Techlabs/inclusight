@@ -1,0 +1,173 @@
+{
+  "title": "Platform inventory: template data",
+  "description": "Generated from packages/reports/src/schemas.ts by `pnpm --filter @app/reports schemas:write`. Do not edit by hand.",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "lang": {
+          "type": "string",
+          "const": "en"
+        },
+        "period": {
+          "type": "string"
+        },
+        "generatedOn": {
+          "type": "string"
+        },
+        "generatedBy": {
+          "type": "string"
+        },
+        "draft": {
+          "type": "boolean"
+        },
+        "draftNote": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "automatedNote": {
+          "type": "string"
+        },
+        "certificationNote": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "title",
+        "lang",
+        "period",
+        "generatedOn",
+        "generatedBy",
+        "draft",
+        "draftNote",
+        "automatedNote",
+        "certificationNote",
+        "notes"
+      ],
+      "additionalProperties": false
+    },
+    "organisation": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "legalName": {
+          "type": "string"
+        },
+        "sebiRegistrationNo": {
+          "type": "string"
+        },
+        "entityType": {
+          "type": "string"
+        },
+        "reportingAuthority": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "legalName",
+        "sebiRegistrationNo",
+        "entityType",
+        "reportingAuthority"
+      ],
+      "additionalProperties": false
+    },
+    "totals": {
+      "type": "object",
+      "properties": {
+        "platforms": {
+          "type": "number"
+        },
+        "investorFacing": {
+          "type": "number"
+        },
+        "verified": {
+          "type": "number"
+        },
+        "scanned": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "platforms",
+        "investorFacing",
+        "verified",
+        "scanned"
+      ],
+      "additionalProperties": false
+    },
+    "platforms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "investorFacing": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "verification": {
+            "type": "string"
+          },
+          "lastScan": {
+            "type": "string"
+          },
+          "score": {
+            "type": "string"
+          },
+          "unresolvedIssues": {
+            "type": "number"
+          },
+          "criticalOrSerious": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "name",
+          "type",
+          "url",
+          "investorFacing",
+          "owner",
+          "verification",
+          "lastScan",
+          "score",
+          "unresolvedIssues",
+          "criticalOrSerious"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "meta",
+    "organisation",
+    "totals",
+    "platforms"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,118 @@
+# Local infrastructure.
+#   Infra only (normal dev):   docker compose -f infra/docker-compose.yml up -d
+#   Infra + web + worker:      docker compose -f infra/docker-compose.yml --profile app up -d --build
+name: a11ycomply
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: a11ycomply
+      POSTGRES_PASSWORD: a11ycomply
+      POSTGRES_DB: a11ycomply
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U a11ycomply -d a11ycomply"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  minio:
+    # The upstream minio/minio image is no longer published on Docker Hub (see DECISIONS D-010).
+    image: cgr.dev/chainguard/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio-data:/data
+
+  # Dev-only SMTP catcher. Web UI: http://localhost:8025
+  mailpit:
+    image: axllent/mailpit:latest
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+  migrate:
+    profiles: ["app"]
+    build:
+      context: ..
+      dockerfile: infra/docker/worker.Dockerfile
+    command: ["pnpm", "--filter", "@app/db", "db:migrate"]
+    environment:
+      DATABASE_URL: postgres://a11ycomply:a11ycomply@postgres:5432/a11ycomply
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  web:
+    profiles: ["app"]
+    build:
+      context: ..
+      dockerfile: infra/docker/web.Dockerfile
+    # BETTER_AUTH_SECRET (and anything else not overridden below) comes from the root .env.
+    env_file:
+      - path: ../.env
+        required: false
+    environment:
+      APP_URL: http://localhost:3000
+      DATABASE_URL: postgres://a11ycomply:a11ycomply@postgres:5432/a11ycomply
+      REDIS_URL: redis://redis:6379
+      SMTP_HOST: mailpit
+      SMTP_PORT: "1025"
+      EMAIL_FROM: "A11yComply <no-reply@a11ycomply.local>"
+      S3_ENDPOINT: http://minio:9000
+      S3_REGION: ap-south-1
+      S3_BUCKET: a11ycomply
+      S3_ACCESS_KEY_ID: minioadmin
+      S3_SECRET_ACCESS_KEY: minioadmin
+    ports:
+      - "3000:3000"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+
+  worker:
+    profiles: ["app"]
+    build:
+      context: ..
+      dockerfile: infra/docker/worker.Dockerfile
+    environment:
+      APP_URL: http://localhost:3000
+      DATABASE_URL: postgres://a11ycomply:a11ycomply@postgres:5432/a11ycomply
+      REDIS_URL: redis://redis:6379
+      S3_ENDPOINT: http://minio:9000
+      S3_REGION: ap-south-1
+      S3_BUCKET: a11ycomply
+      S3_ACCESS_KEY_ID: minioadmin
+      S3_SECRET_ACCESS_KEY: minioadmin
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+      minio:
+        condition: service_started
+
+volumes:
+  postgres-data:
+  minio-data:

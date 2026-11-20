@@ -1,0 +1,52 @@
+# Report types (spec §9). Each has a template folder next to this file:
+#   <folder>/template.html   LiquidJS template rendered to HTML, then to a tagged PDF
+#   <folder>/schema.json     JSON Schema of the data the template receives (generated from the
+#                            report builders; a unit test keeps it in sync)
+# The accessibility statement also has statement.md for its Markdown export.
+# Templates and wording can change here without code changes, as long as they use fields
+# from schema.json. After editing, run `pnpm --filter @app/compliance-data data:build`.
+
+reports:
+  - type: platform_inventory
+    folder: platform-inventory
+    title: Platform inventory
+    summary: >-
+      All digital platforms registered in A11yComply, who is responsible for each, and their
+      accessibility status.
+    formats: [pdf, xlsx]
+
+  - type: audit_summary
+    folder: audit-summary
+    title: Audit summary
+    summary: >-
+      Scope, auditor and IAAP certification, methodology, findings by severity and criterion,
+      and the conformance matrix for one audit.
+    formats: [pdf, xlsx]
+    needs: [audit]
+
+  - type: remediation_tracker
+    folder: remediation-tracker
+    title: Remediation tracker
+    summary: >-
+      Every finding with its status, owner, target date, fixed date and the scan that verified
+      the fix.
+    formats: [pdf, xlsx]
+
+  - type: sebi_annual
+    folder: sebi-annual
+    title: Annual accessibility compliance report (draft)
+    summary: >-
+      Draft annual report for SEBI or your exchange or depository, with signature blocks for
+      the CEO and CTO.
+    formats: [pdf, xlsx]
+    needs: [financial_year, signatories]
+    formatNote: >-
+      Draft layout based on the SEBI circular's requirements. Replace with the official
+      annexure format once it is confirmed.
+
+  - type: accessibility_statement
+    folder: accessibility-statement
+    title: Accessibility statement
+    summary: Public accessibility statement for one website, ready to publish.
+    formats: [pdf, html, md]
+    needs: [property, contact]

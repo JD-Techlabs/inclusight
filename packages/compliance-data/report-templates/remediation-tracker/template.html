@@ -1,0 +1,54 @@
+{% layout "_layout.html" %}
+{% block page_size %}A4 landscape{% endblock %}
+{% block content %}
+<h2>Summary</h2>
+<table>
+  <caption>Findings by status</caption>
+  <thead>
+    <tr><th scope="col">Status</th><th scope="col" class="num">Findings</th></tr>
+  </thead>
+  <tbody>
+    {% for row in totals %}
+    <tr><th scope="row">{{ row.status }}</th><td class="num">{{ row.count }}</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+<p>Unresolved findings past their target date: {{ overdue }}.</p>
+
+<h2>Findings</h2>
+{% if items.size == 0 %}
+<p>No findings.</p>
+{% else %}
+<table>
+  <caption>Each finding with its owner, dates and verification</caption>
+  <thead>
+    <tr>
+      <th scope="col">Finding</th>
+      <th scope="col">Platform</th>
+      <th scope="col">Criteria</th>
+      <th scope="col">Severity</th>
+      <th scope="col">Status</th>
+      <th scope="col">Owner</th>
+      <th scope="col">Target date</th>
+      <th scope="col">Fixed</th>
+      <th scope="col">Verification</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in items %}
+    <tr>
+      <th scope="row">{{ i.finding }} ({{ i.rule }})</th>
+      <td>{{ i.property }}</td>
+      <td>{{ i.criteria }}</td>
+      <td>{{ i.severity }}</td>
+      <td>{{ i.status }}</td>
+      <td>{{ i.owner }}</td>
+      <td>{{ i.targetDate }}</td>
+      <td>{{ i.fixedDate }}</td>
+      <td>{{ i.verification }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% endblock %}

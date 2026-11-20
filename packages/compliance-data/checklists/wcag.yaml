@@ -1,0 +1,360 @@
+# Manual test procedures for WCAG criteria that automated checks cannot fully decide (spec §8).
+# Testers record pass / fail / not applicable with notes and evidence for each criterion.
+# Steps are written for typical investor journeys: sign-in, KYC, orders, statements, PDFs.
+#
+# tools: what the tester needs. steps: what to do and what passing looks like.
+
+"1.1.1":
+  tools: [Screen reader (NVDA on Windows or TalkBack on Android)]
+  steps:
+    - List the images, icons, charts and image buttons on the page, including logos and icons inside links and buttons.
+    - Check each informative image has alternative text that conveys the same information (for charts, the key figures or a nearby table).
+    - Check icon-only buttons and links (search, menu, download) announce their purpose.
+    - Check decorative images are silent in the screen reader (empty alt or hidden).
+    - Check any CAPTCHA describes its purpose and offers a non-visual alternative.
+
+"1.2.1":
+  tools: [Media player]
+  steps:
+    - Find recorded audio-only content (podcasts, recorded calls) and video-only content (silent animations).
+    - Check audio-only content has a transcript with all spoken information.
+    - Check video-only content has a transcript or an audio track describing the visual content.
+
+"1.2.2":
+  tools: [Media player]
+  steps:
+    - Play each recorded video with sound, with captions turned on.
+    - Check captions exist, are accurate and in sync, and include speaker changes and important sounds.
+    - Check auto-generated captions have been reviewed (names, numbers and financial terms are correct).
+
+"1.2.3":
+  tools: [Media player]
+  steps:
+    - Play each recorded video and note visual information not in the soundtrack (on-screen text, charts, actions).
+    - Check that information is given in audio description or in a full text alternative next to the video.
+
+"1.2.4":
+  tools: [Live stream or recording of a past live event]
+  steps:
+    - Identify live video with sound (webinars, AGM or results-call streams).
+    - Check real-time captions are provided and reasonably accurate during the live event.
+
+"1.2.5":
+  tools: [Media player]
+  steps:
+    - Play each recorded video and note visual information not in the soundtrack.
+    - Check an audio-described version or audio description track conveys that information.
+
+"1.3.1":
+  tools: [Screen reader, Browser developer tools or an accessibility tree viewer]
+  steps:
+    - Check visual headings are marked up as headings with levels that match the outline.
+    - Check lists are marked up as lists, and data tables have header cells associated with data cells.
+    - Check every form field is programmatically linked to its visible label, and related fields (date of birth, address, nominee details) are grouped with a legend.
+    - Check required fields and instructions are conveyed in the code, not only visually.
+
+"1.3.2":
+  tools: [Screen reader, Browser with styles disabled]
+  steps:
+    - Read the page with a screen reader from top to bottom.
+    - Check the reading order makes sense, especially for multi-column layouts, cards and pop-ups.
+    - Check hidden content does not interrupt the reading order.
+
+"1.3.3":
+  tools: []
+  steps:
+    - Read the instructions on the page, including form and error instructions.
+    - Check none rely only on shape, colour, size, position or sound (for example "click the green button" or "see the panel on the right").
+
+"1.3.4":
+  tools: [Mobile phone or tablet, or browser device emulation]
+  steps:
+    - Open the page on a mobile device in portrait, then rotate to landscape.
+    - Check the content displays and works in both orientations, unless one is essential.
+
+"1.3.5":
+  tools: [Browser developer tools]
+  steps:
+    - Find fields that collect the user's own details (name, email, mobile number, address, date of birth).
+    - Check each has the correct autocomplete value (for example name, email, tel, street-address, bday).
+    - Check the browser can autofill the fields.
+
+"1.4.1":
+  tools: [Colour blindness simulator (browser developer tools rendering options)]
+  steps:
+    - Look for information conveyed by colour, such as errors, required fields, gains and losses, chart series, status badges, links in text.
+    - Check each also uses text, an icon, a pattern or an underline.
+    - Check with a greyscale or colour-blindness simulation that nothing is lost.
+
+"1.4.2":
+  tools: []
+  steps:
+    - Load the page and listen for audio that starts automatically.
+    - If audio plays for more than 3 seconds, check there is a control near the top of the page to pause, stop or change its volume.
+
+"1.4.3":
+  tools: [Colour contrast analyser]
+  steps:
+    - Check text over images, gradients and videos, and text in images, which automated checks cannot measure.
+    - Check placeholder text, disabled-looking text that is still meaningful, and text in hover and focus states.
+    - Normal text needs 4.5:1; large text (24 px, or 18.66 px bold) needs 3:1.
+
+"1.4.4":
+  tools: [Browser zoom]
+  steps:
+    - Zoom the browser to 200% on a desktop-sized window.
+    - Check all text grows and no content is cut off, overlapped or hidden.
+    - Check forms, menus and dialogs still work at 200%.
+
+"1.4.5":
+  tools: []
+  steps:
+    - Look for images that contain text (banners, scanned notices, infographics, buttons drawn as images).
+    - Check real text is used instead, unless it is a logo or the visual presentation is essential.
+
+"1.4.10":
+  tools: [Browser zoom or responsive mode set to 320 CSS pixels wide]
+  steps:
+    - Set the window to 1280 pixels wide and zoom to 400% (or use a 320-pixel-wide viewport).
+    - Check content reflows into one column with no horizontal scrolling, except for data tables, charts and maps.
+    - Check nothing is cut off and all functions (menus, forms, dialogs) still work.
+
+"1.4.11":
+  tools: [Colour contrast analyser]
+  steps:
+    - Check borders of form fields, checkboxes and radio buttons against the background (3:1).
+    - Check icons that convey meaning and the focus indicator (3:1).
+    - Check the lines and areas needed to understand charts (3:1 against adjacent colours).
+
+"1.4.12":
+  tools: [Text spacing bookmarklet or browser extension]
+  steps:
+    - Apply line height 1.5, paragraph spacing 2× font size, letter spacing 0.12× and word spacing 0.16×.
+    - Check no text is cut off or overlaps, especially in buttons, tabs, cards and tables.
+
+"1.4.13":
+  tools: [Mouse, Keyboard]
+  steps:
+    - Find content that appears on hover or focus (tooltips, mega-menus, info icons).
+    - Check it can be dismissed with Escape without moving the pointer or focus.
+    - Check the pointer can move onto the new content without it disappearing.
+    - Check it stays visible until dismissed or no longer relevant.
+
+"2.1.1":
+  tools: [Keyboard]
+  steps:
+    - Put the mouse away and use Tab, Shift+Tab, Enter, Space and the arrow keys.
+    - Complete the main journeys (sign in, open an account or KYC step, place an order, download a statement, submit a grievance).
+    - Check every link, button, menu, date picker, dropdown and custom widget works with the keyboard.
+
+"2.1.2":
+  tools: [Keyboard]
+  steps:
+    - Tab through the whole page, including embedded content (videos, maps, chat widgets, iframes).
+    - Check focus never gets stuck; for dialogs, check Escape or a close button returns focus.
+
+"2.1.4":
+  tools: [Keyboard]
+  steps:
+    - Check documentation and settings for single-key shortcuts (letters, numbers, punctuation).
+    - If any exist, check they can be turned off or remapped, or only work when the component has focus.
+
+"2.2.1":
+  tools: [Timer]
+  steps:
+    - Sign in (with a test account) and stay idle until the session timeout.
+    - Check a warning appears before expiry and lets the user extend the session with a simple action.
+    - Check the warning is announced by a screen reader and gives at least 20 seconds to respond.
+    - Check other time limits (OTP entry, order windows) can be extended or are essential.
+
+"2.2.2":
+  tools: []
+  steps:
+    - Look for content that moves, blinks, scrolls or updates automatically (tickers, carousels, live prices).
+    - If it starts automatically and lasts over 5 seconds, check it can be paused, stopped or hidden.
+    - For auto-updating content, check users can pause or control how often it updates.
+
+"2.3.1":
+  tools: [Photosensitive epilepsy analysis tool for video content]
+  steps:
+    - Look for flashing content in animations, banners and videos.
+    - Check nothing flashes more than three times in any one second.
+
+"2.4.1":
+  tools: [Keyboard, Screen reader]
+  steps:
+    - Press Tab once on a fresh page load; the first stop should be a "Skip to main content" link.
+    - Activate it and check focus moves to the main content.
+    - Check the page also has landmarks (header, navigation, main, footer) and headings.
+
+"2.4.2":
+  tools: []
+  steps:
+    - Check the browser tab title of each page.
+    - Check titles are unique and describe the page (for example "Open a demat account – Step 2 of 4 – Company").
+
+"2.4.3":
+  tools: [Keyboard]
+  steps:
+    - Tab through the page and watch where focus goes.
+    - Check the order follows the visual and logical order.
+    - Check focus moves into dialogs when they open and returns to the trigger when they close.
+
+"2.4.4":
+  tools: [Screen reader links list]
+  steps:
+    - Open the screen reader's list of links.
+    - Check each link's purpose is clear from its text or its surrounding sentence, list item or table cell.
+    - Check repeated "Read more", "Click here" or "Download" links can be told apart.
+
+"2.4.5":
+  tools: []
+  steps:
+    - Check there are at least two ways to reach content pages, for example main navigation, search, site map or related links.
+    - Steps in a process (such as KYC) are exempt.
+
+"2.4.6":
+  tools: []
+  steps:
+    - Read each heading and check it describes the content that follows.
+    - Read each form label and button and check it describes its purpose.
+
+"2.4.7":
+  tools: [Keyboard]
+  steps:
+    - Tab through the page.
+    - Check every focused element has a clearly visible focus indicator, including on dark backgrounds and in the header and footer.
+
+"2.4.11":
+  tools: [Keyboard]
+  steps:
+    - Tab through the page with sticky headers, footers, cookie banners and chat widgets visible.
+    - Check the focused element is never completely hidden by them.
+
+"2.5.1":
+  tools: [Touch device]
+  steps:
+    - Find features that use pinch, swipe or drawn gestures (carousels, charts, maps, signature pads).
+    - Check each can also be done with single taps or clicks (buttons, controls).
+
+"2.5.2":
+  tools: [Mouse or touch device]
+  steps:
+    - Press down on buttons and links, then move the pointer away before releasing.
+    - Check the action does not happen on press, or can be cancelled or undone.
+
+"2.5.3":
+  tools: [Screen reader or accessibility tree viewer]
+  steps:
+    - Compare the visible text of buttons, links and labelled fields with their accessible names.
+    - Check each accessible name contains the visible text, ideally at the start.
+
+"2.5.4":
+  tools: [Mobile device]
+  steps:
+    - Look for features triggered by shaking or tilting the device.
+    - Check they can also be done through on-screen controls and the motion response can be turned off.
+
+"2.5.7":
+  tools: [Mouse or touch device]
+  steps:
+    - Find features that use dragging (sliders for SIP amount or tenure, reorderable lists, maps).
+    - Check each can also be done with single taps or clicks, such as plus and minus buttons or a text field.
+
+"2.5.8":
+  tools: [Browser developer tools]
+  steps:
+    - Review findings from the automated target-size check.
+    - Check small targets in custom components (icon buttons, pagination, close buttons) are at least 24 by 24 CSS pixels or have enough spacing.
+
+"3.1.1":
+  tools: [Browser developer tools, Screen reader]
+  steps:
+    - Check the html element's lang attribute matches the page's main language (for example "en" or "hi").
+    - Check each language version of the site sets its own language.
+
+"3.1.2":
+  tools: [Screen reader]
+  steps:
+    - Find passages in a different language from the page (Hindi or regional-language text on English pages, or English on Hindi pages).
+    - Check each has its own lang attribute and the screen reader pronounces it correctly.
+
+"3.2.1":
+  tools: [Keyboard]
+  steps:
+    - Tab through all controls.
+    - Check focusing a control never submits a form, opens a new window, or moves focus unexpectedly.
+
+"3.2.2":
+  tools: [Keyboard]
+  steps:
+    - Change every dropdown, radio button and checkbox.
+    - Check none triggers navigation or submission unless users are told beforehand.
+
+"3.2.3":
+  tools: []
+  steps:
+    - Compare the header, navigation and footer on several pages.
+    - Check repeated navigation appears in the same relative order on each page.
+
+"3.2.4":
+  tools: []
+  steps:
+    - Compare components that do the same thing across pages (search, download, help, print).
+    - Check they use the same labels, icons and alternative text everywhere.
+
+"3.2.6":
+  tools: []
+  steps:
+    - Find help options repeated on several pages (contact details, chat, FAQ, grievance link).
+    - Check they appear in the same relative place on each page.
+
+"3.3.1":
+  tools: [Screen reader]
+  steps:
+    - Submit each form with empty and invalid values.
+    - Check each error identifies the field in text and describes the problem.
+    - Check errors are announced by the screen reader, not shown only in colour.
+
+"3.3.2":
+  tools: [Screen reader]
+  steps:
+    - Check every field has a visible label or instructions.
+    - Check required fields and formats (PAN, IFSC, date of birth, mobile number) are stated before submission.
+
+"3.3.3":
+  tools: []
+  steps:
+    - Submit forms with values in the wrong format.
+    - Check the error suggests how to correct the value (for example "Enter PAN as 5 letters, 4 digits, 1 letter").
+
+"3.3.4":
+  tools: [Test account]
+  steps:
+    - Go through journeys that create financial or legal commitments (orders, fund transfers, mandates, KYC submission, account changes).
+    - Check users can review and confirm before submitting, or reverse the action, or that input is checked with a chance to correct it.
+
+"3.3.7":
+  tools: [Test account]
+  steps:
+    - Go through multi-step processes (account opening, KYC, nominee addition).
+    - Check information entered earlier is not asked for again, or is pre-filled or selectable.
+
+"3.3.8":
+  tools: [Password manager]
+  steps:
+    - Sign in with a password manager and check it can fill the username and password fields.
+    - Check paste is allowed in password and OTP fields.
+    - Check any CAPTCHA or puzzle has an alternative that does not require a cognitive test.
+
+"4.1.2":
+  tools: [Screen reader]
+  steps:
+    - Use custom widgets (tabs, accordions, dropdowns, toggles, date pickers, dialogs) with a screen reader.
+    - Check each announces its name, role and state (expanded, selected, checked) and announces changes.
+
+"4.1.3":
+  tools: [Screen reader]
+  steps:
+    - Trigger status messages (add to watchlist, place an order, search results, form errors, loading states).
+    - Check each is announced by the screen reader without moving focus.

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="{{ meta.lang }}">
+  <head>
+    <meta charset="utf-8" />
+    <title>{{ meta.title }} – {{ organisation.name }}</title>
+    <style>
+      @page {
+        size: {% block page_size %}A4{% endblock %};
+        margin: 16mm 14mm;
+      }
+      body {
+        font-family: "Segoe UI", Arial, "Liberation Sans", "DejaVu Sans", sans-serif;
+        font-size: 10.5pt;
+        line-height: 1.45;
+        color: #111827;
+        margin: 0;
+      }
+      h1 { font-size: 20pt; margin: 0 0 4pt; }
+      h2 { font-size: 14pt; margin: 18pt 0 6pt; border-bottom: 1px solid #6b7280; padding-bottom: 2pt; }
+      h3 { font-size: 11.5pt; margin: 12pt 0 4pt; }
+      p, ul { margin: 0 0 6pt; }
+      .org { font-size: 11pt; color: #374151; margin: 0; }
+      dl.facts { display: grid; grid-template-columns: max-content 1fr; gap: 2pt 12pt; margin: 6pt 0 10pt; }
+      dl.facts dt { font-weight: 600; }
+      dl.facts dd { margin: 0; }
+      .draft { border: 2px solid #92400e; padding: 6pt 8pt; margin: 10pt 0; }
+      table { border-collapse: collapse; width: 100%; margin: 6pt 0 12pt; font-size: 9pt; }
+      caption { text-align: left; font-weight: 600; font-size: 10pt; margin-bottom: 4pt; }
+      th, td { border: 1px solid #6b7280; padding: 3pt 5pt; text-align: left; vertical-align: top; }
+      thead th { background: #e5e7eb; }
+      thead { display: table-header-group; }
+      tr { break-inside: avoid; }
+      .num { text-align: right; }
+      .signature { height: 30pt; }
+      .about { margin-top: 18pt; border-top: 1px solid #6b7280; padding-top: 4pt; font-size: 9pt; }
+      a { color: #1d4ed8; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <p class="org">{{ organisation.name }}</p>
+      <h1>{{ meta.title }}</h1>
+      <dl class="facts">
+        <dt>Period</dt>
+        <dd>{{ meta.period }}</dd>
+        <dt>Generated</dt>
+        <dd>{{ meta.generatedOn }} by {{ meta.generatedBy }}</dd>
+      </dl>
+      {% if meta.draft %}<p class="draft"><strong>Draft.</strong> {{ meta.draftNote }}</p>{% endif %}
+    </header>
+    <main>{% block content %}{% endblock %}</main>
+    <footer class="about">
+      <h2>About this report</h2>
+      <p>{{ meta.automatedNote }}</p>
+      <p>{{ meta.certificationNote }}</p>
+      {% for note in meta.notes %}<p>{{ note }}</p>{% endfor %}
+      <p>Generated with A11yComply.</p>
+    </footer>
+  </body>
+</html>

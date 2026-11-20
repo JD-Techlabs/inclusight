@@ -1,0 +1,299 @@
+{
+  "title": "Annual accessibility compliance report (draft): template data",
+  "description": "Generated from packages/reports/src/schemas.ts by `pnpm --filter @app/reports schemas:write`. Do not edit by hand.",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "lang": {
+          "type": "string",
+          "const": "en"
+        },
+        "period": {
+          "type": "string"
+        },
+        "generatedOn": {
+          "type": "string"
+        },
+        "generatedBy": {
+          "type": "string"
+        },
+        "draft": {
+          "type": "boolean"
+        },
+        "draftNote": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "automatedNote": {
+          "type": "string"
+        },
+        "certificationNote": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "title",
+        "lang",
+        "period",
+        "generatedOn",
+        "generatedBy",
+        "draft",
+        "draftNote",
+        "automatedNote",
+        "certificationNote",
+        "notes"
+      ],
+      "additionalProperties": false
+    },
+    "organisation": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "legalName": {
+          "type": "string"
+        },
+        "sebiRegistrationNo": {
+          "type": "string"
+        },
+        "entityType": {
+          "type": "string"
+        },
+        "reportingAuthority": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "legalName",
+        "sebiRegistrationNo",
+        "entityType",
+        "reportingAuthority"
+      ],
+      "additionalProperties": false
+    },
+    "financialYear": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "start": {
+          "type": "string"
+        },
+        "end": {
+          "type": "string"
+        },
+        "due": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "label",
+        "start",
+        "end",
+        "due"
+      ],
+      "additionalProperties": false
+    },
+    "nodalOfficers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "email"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "platforms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "investorFacing": {
+            "type": "string"
+          },
+          "score": {
+            "type": "string"
+          },
+          "lastScan": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "url",
+          "investorFacing",
+          "score",
+          "lastScan"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "audits": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "auditor": {
+            "type": "string"
+          },
+          "iaapCertId": {
+            "type": "string"
+          },
+          "dates": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "standard": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "auditor",
+          "iaapCertId",
+          "dates",
+          "status",
+          "standard"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "findings": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "number"
+        },
+        "unresolved": {
+          "type": "number"
+        },
+        "fixed": {
+          "type": "number"
+        },
+        "acceptedRisk": {
+          "type": "number"
+        },
+        "severity": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "severity": {
+                "type": "string"
+              },
+              "unresolved": {
+                "type": "number"
+              },
+              "fixed": {
+                "type": "number"
+              },
+              "total": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "severity",
+              "unresolved",
+              "fixed",
+              "total"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "total",
+        "unresolved",
+        "fixed",
+        "acceptedRisk",
+        "severity"
+      ],
+      "additionalProperties": false
+    },
+    "grievances": {
+      "type": "object",
+      "properties": {
+        "note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "note"
+      ],
+      "additionalProperties": false
+    },
+    "signatories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "designation": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "role",
+          "name",
+          "designation"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "meta",
+    "organisation",
+    "financialYear",
+    "nodalOfficers",
+    "platforms",
+    "audits",
+    "findings",
+    "grievances",
+    "signatories"
+  ],
+  "additionalProperties": false
+}

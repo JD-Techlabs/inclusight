@@ -1,0 +1,35 @@
+{
+  "name": "@app/reports",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./params": "./src/params.ts",
+    "./snapshot": "./src/snapshot.ts",
+    "./testing": "./src/testing/verapdf.ts"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "schemas:write": "tsx scripts/write-schemas.ts"
+  },
+  "dependencies": {
+    "@app/compliance-data": "workspace:*",
+    "@app/db": "workspace:*",
+    "exceljs": "^4.4.0",
+    "liquidjs": "^10.30.1",
+    "pdf-lib": "1.17.1",
+    "playwright": "1.65.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@app/config": "workspace:*",
+    "@types/node": "^24.19.2",
+    "eslint": "^9.39.5",
+    "tsx": "^4.23.15",
+    "typescript": "~6.0.3",
+    "vitest": "^4.0.0"
+  }
+}

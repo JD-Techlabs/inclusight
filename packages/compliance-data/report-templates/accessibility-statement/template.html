@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="{{ meta.lang }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Accessibility statement – {{ property.name }}</title>
+    <style>
+      @page { size: A4; margin: 18mm 16mm; }
+      body {
+        font-family: "Segoe UI", Arial, "Liberation Sans", "DejaVu Sans", sans-serif;
+        font-size: 11pt;
+        line-height: 1.5;
+        color: #111827;
+        max-width: 44rem;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+      h1 { font-size: 20pt; }
+      h2 { font-size: 14pt; margin-top: 18pt; }
+      a { color: #1d4ed8; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Accessibility statement for {{ property.name }}</h1>
+      <p>
+        {{ organisationName }} is committed to making {{ property.name }} ({{ property.url }})
+        accessible to everyone, including persons with disabilities, in line with the Rights of
+        Persons with Disabilities Act, 2016 and SEBI's digital accessibility requirements.
+      </p>
+
+      <h2>Conformance status</h2>
+      <p><strong>{{ conformance.level }}.</strong> {{ conformance.sentence }}</p>
+
+      <h2>Standard</h2>
+      <p>We aim to meet {{ standard }}.</p>
+
+      <h2>Known limitations</h2>
+      {% if limitations.size == 0 and extraLimitations.size == 0 %}
+      <p>We are not aware of any accessibility limitations at present.</p>
+      {% else %}
+      <p>We know about the following problems and are working to fix them:</p>
+      <ul>
+        {% for l in limitations %}<li>{{ l.criterion }}: {{ l.description }}</li>{% endfor %}
+      </ul>
+      {% for paragraph in extraLimitations %}<p>{{ paragraph }}</p>{% endfor %}
+      {% endif %}
+
+      <h2>How we assessed this website</h2>
+      <p>{{ method }}</p>
+
+      <h2>Feedback and contact</h2>
+      <p>
+        If you find an accessibility problem on this website or need information in another
+        format, contact us by email at <a href="mailto:{{ contact.email }}">{{ contact.email }}</a>{% if contact.phone != "" %} or by phone on {{ contact.phone }}{% endif %}.
+        We aim to respond within {{ contact.responseDays }} working days.
+      </p>
+
+      <h2>Date of this statement</h2>
+      <p>This statement was prepared on {{ preparedOn }}.</p>
+    </main>
+  </body>
+</html>

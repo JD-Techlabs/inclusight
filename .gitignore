@@ -1,0 +1,22 @@
+node_modules/
+.next/
+dist/
+.turbo/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+next-env.d.ts
+
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+.DS_Store
+Thumbs.db
+
+# Fixture site runtime state
+fixtures/.state/

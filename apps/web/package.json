@@ -1,0 +1,50 @@
+{
+  "name": "@app/web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --port 3000",
+    "build": "next build",
+    "start": "next start --port 3000",
+    "lint": "eslint .",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "vitest run",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "@app/compliance-data": "workspace:*",
+    "@app/config": "workspace:*",
+    "@app/db": "workspace:*",
+    "@app/queue": "workspace:*",
+    "@app/reports": "workspace:*",
+    "@app/scanner-core": "workspace:*",
+    "@app/storage": "workspace:*",
+    "@app/ui": "workspace:*",
+    "better-auth": "^1.7.25",
+    "drizzle-orm": "^0.45.4",
+    "exceljs": "^4.4.0",
+    "geist": "1.9.0",
+    "lucide-react": "1.68.0",
+    "next": "^16.4.6",
+    "nodemailer": "^10.6.0",
+    "qrcode": "^1.5.4",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.65.1",
+    "@tailwindcss/postcss": "^4.3.5",
+    "@types/node": "^24.19.2",
+    "@types/nodemailer": "^8.0.2",
+    "@types/qrcode": "^1.5.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^9.39.5",
+    "tailwindcss": "^4.3.5",
+    "typescript": "~6.0.3",
+    "vitest": "^4.0.0"
+  }
+}

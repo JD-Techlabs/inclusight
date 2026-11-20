@@ -1,0 +1,29 @@
+{
+  "name": "@app/scanner-core",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./pure": "./src/pure.ts",
+    "./verify": "./src/verify.ts"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "playwright": "1.65.1",
+    "zod": "^4.6.7",
+    "@app/compliance-data": "workspace:*"
+  },
+  "devDependencies": {
+    "@app/config": "workspace:*",
+    "@types/node": "^24.19.2",
+    "eslint": "^9.39.5",
+    "typescript": "~6.0.3",
+    "vitest": "^4.0.0"
+  }
+}

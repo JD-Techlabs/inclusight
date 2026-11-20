@@ -1,0 +1,57 @@
+{% layout "_layout.html" %}
+{% block page_size %}A4 landscape{% endblock %}
+{% block content %}
+{% render "_partials/organisation.html", organisation: organisation %}
+
+<h2>Summary</h2>
+<dl class="facts">
+  <dt>Platforms registered</dt>
+  <dd>{{ totals.platforms }}</dd>
+  <dt>Investor-facing</dt>
+  <dd>{{ totals.investorFacing }}</dd>
+  <dt>Domain verified</dt>
+  <dd>{{ totals.verified }}</dd>
+  <dt>Scanned at least once</dt>
+  <dd>{{ totals.scanned }}</dd>
+</dl>
+
+<h2>Platforms</h2>
+{% if platforms.size == 0 %}
+<p>No platforms are registered yet.</p>
+{% else %}
+<table>
+  <caption>Digital platforms, owners and accessibility status</caption>
+  <thead>
+    <tr>
+      <th scope="col">Platform</th>
+      <th scope="col">Type</th>
+      <th scope="col">Address</th>
+      <th scope="col">Investor-facing</th>
+      <th scope="col">Owner</th>
+      <th scope="col">Domain</th>
+      <th scope="col">Last scan</th>
+      <th scope="col">Score</th>
+      <th scope="col" class="num">Unresolved issues</th>
+      <th scope="col" class="num">Critical or serious</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in platforms %}
+    <tr>
+      <th scope="row">{{ p.name }}</th>
+      <td>{{ p.type }}</td>
+      <td>{{ p.url }}</td>
+      <td>{{ p.investorFacing }}</td>
+      <td>{{ p.owner }}</td>
+      <td>{{ p.verification }}</td>
+      <td>{{ p.lastScan }}</td>
+      <td>{{ p.score }}</td>
+      <td class="num">{{ p.unresolvedIssues }}</td>
+      <td class="num">{{ p.criticalOrSerious }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<p>Scores and issue counts come from the latest automated scan of each platform.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,176 @@
+{
+  "title": "Remediation tracker: template data",
+  "description": "Generated from packages/reports/src/schemas.ts by `pnpm --filter @app/reports schemas:write`. Do not edit by hand.",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "lang": {
+          "type": "string",
+          "const": "en"
+        },
+        "period": {
+          "type": "string"
+        },
+        "generatedOn": {
+          "type": "string"
+        },
+        "generatedBy": {
+          "type": "string"
+        },
+        "draft": {
+          "type": "boolean"
+        },
+        "draftNote": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "automatedNote": {
+          "type": "string"
+        },
+        "certificationNote": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "title",
+        "lang",
+        "period",
+        "generatedOn",
+        "generatedBy",
+        "draft",
+        "draftNote",
+        "automatedNote",
+        "certificationNote",
+        "notes"
+      ],
+      "additionalProperties": false
+    },
+    "organisation": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "legalName": {
+          "type": "string"
+        },
+        "sebiRegistrationNo": {
+          "type": "string"
+        },
+        "entityType": {
+          "type": "string"
+        },
+        "reportingAuthority": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "legalName",
+        "sebiRegistrationNo",
+        "entityType",
+        "reportingAuthority"
+      ],
+      "additionalProperties": false
+    },
+    "totals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "count": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "status",
+          "count"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "overdue": {
+      "type": "number"
+    },
+    "truncated": {
+      "type": "boolean"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "property": {
+            "type": "string"
+          },
+          "finding": {
+            "type": "string"
+          },
+          "rule": {
+            "type": "string"
+          },
+          "criteria": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "targetDate": {
+            "type": "string"
+          },
+          "fixedDate": {
+            "type": "string"
+          },
+          "verification": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "property",
+          "finding",
+          "rule",
+          "criteria",
+          "severity",
+          "status",
+          "owner",
+          "targetDate",
+          "fixedDate",
+          "verification"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "meta",
+    "organisation",
+    "totals",
+    "overdue",
+    "truncated",
+    "items"
+  ],
+  "additionalProperties": false
+}

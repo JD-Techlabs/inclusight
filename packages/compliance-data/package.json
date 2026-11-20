@@ -1,0 +1,29 @@
+{
+  "name": "@app/compliance-data",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./client": "./src/client.ts",
+    "./templates": "./src/templates.ts"
+  },
+  "scripts": {
+    "data:build": "node scripts/build-data.mjs",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@app/config": "workspace:*",
+    "@types/node": "^24.19.2",
+    "axe-core": "4.14.1",
+    "eslint": "^9.39.5",
+    "typescript": "~6.0.3",
+    "vitest": "^4.0.0",
+    "yaml": "^2.9.1"
+  }
+}

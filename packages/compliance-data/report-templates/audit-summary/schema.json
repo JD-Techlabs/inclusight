@@ -1,0 +1,318 @@
+{
+  "title": "Audit summary: template data",
+  "description": "Generated from packages/reports/src/schemas.ts by `pnpm --filter @app/reports schemas:write`. Do not edit by hand.",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "lang": {
+          "type": "string",
+          "const": "en"
+        },
+        "period": {
+          "type": "string"
+        },
+        "generatedOn": {
+          "type": "string"
+        },
+        "generatedBy": {
+          "type": "string"
+        },
+        "draft": {
+          "type": "boolean"
+        },
+        "draftNote": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "automatedNote": {
+          "type": "string"
+        },
+        "certificationNote": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "title",
+        "lang",
+        "period",
+        "generatedOn",
+        "generatedBy",
+        "draft",
+        "draftNote",
+        "automatedNote",
+        "certificationNote",
+        "notes"
+      ],
+      "additionalProperties": false
+    },
+    "organisation": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "legalName": {
+          "type": "string"
+        },
+        "sebiRegistrationNo": {
+          "type": "string"
+        },
+        "entityType": {
+          "type": "string"
+        },
+        "reportingAuthority": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "legalName",
+        "sebiRegistrationNo",
+        "entityType",
+        "reportingAuthority"
+      ],
+      "additionalProperties": false
+    },
+    "audit": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "auditorName": {
+          "type": "string"
+        },
+        "iaapCertId": {
+          "type": "string"
+        },
+        "auditorOrg": {
+          "type": "string"
+        },
+        "dates": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "standard": {
+          "type": "string"
+        },
+        "methodology": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scope": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "url"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "title",
+        "auditorName",
+        "iaapCertId",
+        "auditorOrg",
+        "dates",
+        "status",
+        "standard",
+        "methodology",
+        "scope"
+      ],
+      "additionalProperties": false
+    },
+    "severity": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "severity": {
+            "type": "string"
+          },
+          "unresolved": {
+            "type": "number"
+          },
+          "fixed": {
+            "type": "number"
+          },
+          "total": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "severity",
+          "unresolved",
+          "fixed",
+          "total"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "criteria": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "criterion": {
+            "type": "string"
+          },
+          "violations": {
+            "type": "number"
+          },
+          "reviews": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "criterion",
+          "violations",
+          "reviews"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "conformance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "standard": {
+            "type": "string"
+          },
+          "pendingReview": {
+            "type": "boolean"
+          },
+          "reviewNote": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "properties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "criterion": {
+                  "type": "string"
+                },
+                "level": {
+                  "type": "string"
+                },
+                "statuses": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "overall": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "criterion",
+                "level",
+                "statuses",
+                "overall"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "counts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "count": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "status",
+                "count"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "standard",
+          "pendingReview",
+          "reviewNote",
+          "properties",
+          "rows",
+          "counts"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "manualTesting": {
+      "type": "object",
+      "properties": {
+        "tested": {
+          "type": "number"
+        },
+        "total": {
+          "type": "number"
+        },
+        "evidenceFiles": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "tested",
+        "total",
+        "evidenceFiles"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "meta",
+    "organisation",
+    "audit",
+    "severity",
+    "criteria",
+    "conformance",
+    "manualTesting"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,36 @@
+<h3>{{ table.standard }}</h3>
+{% if table.pendingReview %}
+<p><strong>Pending expert review.</strong> {{ table.reviewNote }}</p>
+{% endif %}
+<table>
+  <caption>{{ table.standard }}: number of criteria by overall result</caption>
+  <thead>
+    <tr><th scope="col">Result</th><th scope="col" class="num">Criteria</th></tr>
+  </thead>
+  <tbody>
+    {% for c in table.counts %}
+    <tr><th scope="row">{{ c.status }}</th><td class="num">{{ c.count }}</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+<table>
+  <caption>{{ table.standard }}: result for each criterion</caption>
+  <thead>
+    <tr>
+      <th scope="col">Criterion</th>
+      <th scope="col">Level</th>
+      {% for name in table.properties %}<th scope="col">{{ name }}</th>{% endfor %}
+      {% if table.properties.size > 1 %}<th scope="col">Overall</th>{% endif %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in table.rows %}
+    <tr>
+      <th scope="row">{{ row.criterion }}</th>
+      <td>{{ row.level }}</td>
+      {% for status in row.statuses %}<td>{{ status }}</td>{% endfor %}
+      {% if table.properties.size > 1 %}<td>{{ row.overall }}</td>{% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

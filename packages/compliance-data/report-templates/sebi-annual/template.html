@@ -1,0 +1,166 @@
+{% layout "_layout.html" %}
+{% block content %}
+<h2>1. Entity details</h2>
+<dl class="facts">
+  <dt>Name of the entity</dt>
+  <dd>{{ organisation.legalName }}</dd>
+  <dt>Trading name</dt>
+  <dd>{{ organisation.name }}</dd>
+  <dt>SEBI registration number</dt>
+  <dd>{{ organisation.sebiRegistrationNo }}</dd>
+  <dt>Category</dt>
+  <dd>{{ organisation.entityType }}</dd>
+  <dt>Report submitted to</dt>
+  <dd>{{ organisation.reportingAuthority }}</dd>
+</dl>
+<h3>Nodal officer for digital accessibility</h3>
+{% if nodalOfficers.size == 0 %}
+<p>No nodal officer is recorded. Add one as a member with the Nodal officer role.</p>
+{% else %}
+<ul>
+  {% for n in nodalOfficers %}<li>{{ n.name }} ({{ n.email }})</li>{% endfor %}
+</ul>
+{% endif %}
+
+<h2>2. Reporting period</h2>
+<dl class="facts">
+  <dt>Financial year</dt>
+  <dd>{{ financialYear.label }} ({{ financialYear.start }} to {{ financialYear.end }})</dd>
+  <dt>Report due by</dt>
+  <dd>{{ financialYear.due }} (within 30 days of the end of the financial year)</dd>
+</dl>
+
+<h2>3. Digital platforms covered</h2>
+{% if platforms.size == 0 %}
+<p>No platforms are registered.</p>
+{% else %}
+<table>
+  <caption>Digital platforms covered by this report</caption>
+  <thead>
+    <tr>
+      <th scope="col">Platform</th>
+      <th scope="col">Address</th>
+      <th scope="col">Investor-facing</th>
+      <th scope="col">Latest automated score</th>
+      <th scope="col">Last scan</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in platforms %}
+    <tr>
+      <th scope="row">{{ p.name }}</th>
+      <td>{{ p.url }}</td>
+      <td>{{ p.investorFacing }}</td>
+      <td>{{ p.score }}</td>
+      <td>{{ p.lastScan }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+
+<h2>4. Accessibility audits</h2>
+{% if audits.size == 0 %}
+<p>No audits are recorded for this financial year.</p>
+{% else %}
+<table>
+  <caption>Audits by IAAP-certified professionals during the financial year</caption>
+  <thead>
+    <tr>
+      <th scope="col">Audit</th>
+      <th scope="col">Auditor</th>
+      <th scope="col">IAAP certification</th>
+      <th scope="col">Dates</th>
+      <th scope="col">Standard</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for a in audits %}
+    <tr>
+      <th scope="row">{{ a.title }}</th>
+      <td>{{ a.auditor }}</td>
+      <td>{{ a.iaapCertId }}</td>
+      <td>{{ a.dates }}</td>
+      <td>{{ a.standard }}</td>
+      <td>{{ a.status }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+
+<h2>5. Findings and remediation</h2>
+<p>As on the date this report was generated.</p>
+<dl class="facts">
+  <dt>Findings recorded</dt>
+  <dd>{{ findings.total }}</dd>
+  <dt>Fixed</dt>
+  <dd>{{ findings.fixed }}</dd>
+  <dt>Unresolved</dt>
+  <dd>{{ findings.unresolved }} (of which accepted as a risk: {{ findings.acceptedRisk }})</dd>
+</dl>
+<table>
+  <caption>Findings by severity</caption>
+  <thead>
+    <tr>
+      <th scope="col">Severity</th>
+      <th scope="col" class="num">Unresolved</th>
+      <th scope="col" class="num">Fixed</th>
+      <th scope="col" class="num">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in findings.severity %}
+    <tr>
+      <th scope="row">{{ row.severity }}</th>
+      <td class="num">{{ row.unresolved }}</td>
+      <td class="num">{{ row.fixed }}</td>
+      <td class="num">{{ row.total }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h2>6. Accessibility grievances</h2>
+<p>{{ grievances.note }}</p>
+<table>
+  <caption>Grievances during the financial year (to be completed)</caption>
+  <thead>
+    <tr><th scope="col">Measure</th><th scope="col">Value</th></tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">Grievances received</th><td>To be completed</td></tr>
+    <tr><th scope="row">Grievances resolved</th><td>To be completed</td></tr>
+    <tr><th scope="row">Average resolution time</th><td>To be completed</td></tr>
+  </tbody>
+</table>
+
+<h2>7. Declaration</h2>
+<p>
+  We have reviewed this report and confirm that, to the best of our knowledge, it gives a true
+  account of the entity's digital accessibility compliance for the financial year
+  {{ financialYear.label }}.
+</p>
+<table>
+  <caption>Signatures</caption>
+  <thead>
+    <tr>
+      <th scope="col">Role</th>
+      <th scope="col">Name</th>
+      <th scope="col">Signature</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for s in signatories %}
+    <tr>
+      <th scope="row">{{ s.role }}</th>
+      <td>{% if s.name != "" %}{{ s.name }}{% else %}To be completed{% endif %}</td>
+      <td class="signature">To be signed</td>
+      <td>To be completed</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

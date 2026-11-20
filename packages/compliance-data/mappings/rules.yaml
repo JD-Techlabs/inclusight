@@ -1,0 +1,134 @@
+# Rule → criteria mapping (spec §8). Every axe-core rule and every A11yComply custom rule is
+# listed here; scans store an issue's criteria from this file, not from code.
+#
+# kind:
+#   violation      a failure of the listed WCAG criteria; counted in scores
+#   best_practice  related to the listed criteria but not a failure on its own; not scored
+#   review         a finding a person must check (the scanner cannot decide); not scored
+#   aaa            Level AAA rule; not run (SEBI requires Level AA)
+# criteria: WCAG success criteria. A rule with no WCAG criteria must be referenced by a GIGW or
+# IS 17802 requirement (relatedRules) instead.
+#
+# The axe section was generated from axe-core's own WCAG tags (plus hand-mapped best-practice
+# rules) and is checked against the installed axe-core version by a unit test, so an axe
+# upgrade that adds rules fails until they are mapped here.
+
+axe:
+  accesskeys: { kind: best_practice, criteria: ["2.1.1"] }
+  area-alt: { kind: violation, criteria: ["2.4.4", "4.1.2"] }
+  aria-allowed-attr: { kind: violation, criteria: ["4.1.2"] }
+  aria-allowed-role: { kind: best_practice, criteria: ["4.1.2"] }
+  aria-braille-equivalent: { kind: violation, criteria: ["4.1.2"] }
+  aria-command-name: { kind: violation, criteria: ["4.1.2"] }
+  aria-conditional-attr: { kind: violation, criteria: ["4.1.2"] }
+  aria-deprecated-role: { kind: violation, criteria: ["4.1.2"] }
+  aria-dialog-name: { kind: best_practice, criteria: ["4.1.2"] }
+  aria-hidden-body: { kind: violation, criteria: ["1.3.1", "4.1.2"] }
+  aria-hidden-focus: { kind: violation, criteria: ["4.1.2"] }
+  aria-input-field-name: { kind: violation, criteria: ["4.1.2"] }
+  aria-meter-name: { kind: violation, criteria: ["1.1.1"] }
+  aria-progressbar-name: { kind: violation, criteria: ["1.1.1"] }
+  aria-prohibited-attr: { kind: violation, criteria: ["4.1.2"] }
+  aria-required-attr: { kind: violation, criteria: ["4.1.2"] }
+  aria-required-children: { kind: violation, criteria: ["1.3.1"] }
+  aria-required-parent: { kind: violation, criteria: ["1.3.1"] }
+  aria-roledescription: { kind: violation, criteria: ["4.1.2"] } # deprecated in axe
+  aria-roles: { kind: violation, criteria: ["4.1.2"] }
+  aria-tab-name: { kind: violation, criteria: ["4.1.2"] }
+  aria-text: { kind: best_practice, criteria: ["4.1.2"] }
+  aria-toggle-field-name: { kind: violation, criteria: ["4.1.2"] }
+  aria-tooltip-name: { kind: violation, criteria: ["4.1.2"] }
+  aria-treeitem-name: { kind: best_practice, criteria: ["4.1.2"] }
+  aria-valid-attr: { kind: violation, criteria: ["4.1.2"] }
+  aria-valid-attr-value: { kind: violation, criteria: ["4.1.2"] }
+  audio-caption: { kind: violation, criteria: ["1.2.1"] } # deprecated in axe
+  autocomplete-valid: { kind: violation, criteria: ["1.3.5"] }
+  avoid-inline-spacing: { kind: violation, criteria: ["1.4.12"] }
+  blink: { kind: violation, criteria: ["2.2.2"] }
+  button-name: { kind: violation, criteria: ["4.1.2"] }
+  bypass: { kind: violation, criteria: ["2.4.1"] }
+  color-contrast: { kind: violation, criteria: ["1.4.3"] }
+  color-contrast-enhanced: { kind: aaa, criteria: ["1.4.6"] } # Level AAA: not run
+  css-orientation-lock: { kind: violation, criteria: ["1.3.4"] } # experimental: not run
+  definition-list: { kind: violation, criteria: ["1.3.1"] }
+  dlitem: { kind: violation, criteria: ["1.3.1"] }
+  document-title: { kind: violation, criteria: ["2.4.2"] }
+  duplicate-id: { kind: violation, criteria: ["4.1.1"] } # deprecated in axe
+  duplicate-id-active: { kind: violation, criteria: ["4.1.1"] } # deprecated in axe
+  duplicate-id-aria: { kind: violation, criteria: ["4.1.2"] }
+  empty-heading: { kind: best_practice, criteria: ["1.3.1", "2.4.6"] }
+  empty-table-header: { kind: best_practice, criteria: ["1.3.1"] }
+  focus-order-semantics: { kind: best_practice, criteria: ["4.1.2"] } # experimental: not run
+  form-field-multiple-labels: { kind: violation, criteria: ["3.3.2"] }
+  frame-focusable-content: { kind: violation, criteria: ["2.1.1"] }
+  frame-tested: { kind: best_practice, criteria: ["4.1.2"] }
+  frame-title: { kind: violation, criteria: ["4.1.2"] }
+  frame-title-unique: { kind: violation, criteria: ["4.1.2"] }
+  heading-order: { kind: best_practice, criteria: ["1.3.1"] }
+  hidden-content: { kind: best_practice, criteria: ["1.3.1"] } # experimental: not run
+  html-has-lang: { kind: violation, criteria: ["3.1.1"] }
+  html-lang-valid: { kind: violation, criteria: ["3.1.1"] }
+  html-xml-lang-mismatch: { kind: violation, criteria: ["3.1.1"] }
+  identical-links-same-purpose: { kind: aaa, criteria: ["2.4.9"] } # Level AAA: not run
+  image-alt: { kind: violation, criteria: ["1.1.1"] }
+  image-redundant-alt: { kind: best_practice, criteria: ["1.1.1"] }
+  input-button-name: { kind: violation, criteria: ["4.1.2"] }
+  input-image-alt: { kind: violation, criteria: ["1.1.1", "4.1.2"] }
+  label: { kind: violation, criteria: ["4.1.2"] }
+  label-content-name-mismatch: { kind: violation, criteria: ["2.5.3"] }
+  label-title-only: { kind: best_practice, criteria: ["3.3.2"] }
+  landmark-banner-is-top-level: { kind: best_practice, criteria: ["1.3.1"] }
+  landmark-complementary-is-top-level: { kind: best_practice, criteria: ["1.3.1"] } # deprecated in axe
+  landmark-contentinfo-is-top-level: { kind: best_practice, criteria: ["1.3.1"] }
+  landmark-main-is-top-level: { kind: best_practice, criteria: ["1.3.1"] }
+  landmark-no-duplicate-banner: { kind: best_practice, criteria: ["1.3.1"] }
+  landmark-no-duplicate-contentinfo: { kind: best_practice, criteria: ["1.3.1"] }
+  landmark-no-duplicate-main: { kind: best_practice, criteria: ["1.3.1"] }
+  landmark-one-main: { kind: best_practice, criteria: ["1.3.1"] }
+  landmark-unique: { kind: best_practice, criteria: ["1.3.1"] }
+  link-in-text-block: { kind: violation, criteria: ["1.4.1"] }
+  link-name: { kind: violation, criteria: ["2.4.4", "4.1.2"] }
+  list: { kind: violation, criteria: ["1.3.1"] }
+  listitem: { kind: violation, criteria: ["1.3.1"] }
+  marquee: { kind: violation, criteria: ["2.2.2"] }
+  meta-refresh: { kind: violation, criteria: ["2.2.1"] }
+  meta-refresh-no-exceptions: { kind: aaa, criteria: ["2.2.4", "3.2.5"] } # Level AAA: not run
+  meta-viewport: { kind: violation, criteria: ["1.4.4"] }
+  meta-viewport-large: { kind: best_practice, criteria: ["1.4.4"] }
+  nested-interactive: { kind: violation, criteria: ["4.1.2"] }
+  no-autoplay-audio: { kind: violation, criteria: ["1.4.2"] }
+  object-alt: { kind: violation, criteria: ["1.1.1"] }
+  p-as-heading: { kind: violation, criteria: ["1.3.1"] } # experimental: not run
+  page-has-heading-one: { kind: best_practice, criteria: ["1.3.1", "2.4.6"] }
+  presentation-role-conflict: { kind: best_practice, criteria: ["4.1.2"] }
+  region: { kind: best_practice, criteria: ["1.3.1"] }
+  role-img-alt: { kind: violation, criteria: ["1.1.1"] }
+  scope-attr-valid: { kind: best_practice, criteria: ["1.3.1"] }
+  scrollable-region-focusable: { kind: violation, criteria: ["2.1.1"] } # axe also tags 2.1.3 (Level AAA)
+  select-name: { kind: violation, criteria: ["4.1.2"] }
+  server-side-image-map: { kind: violation, criteria: ["2.1.1"] }
+  skip-link: { kind: best_practice, criteria: ["2.4.1"] }
+  summary-name: { kind: violation, criteria: ["4.1.2"] }
+  svg-img-alt: { kind: violation, criteria: ["1.1.1"] }
+  tabindex: { kind: best_practice, criteria: ["2.4.3"] }
+  table-duplicate-name: { kind: best_practice, criteria: ["1.3.1"] }
+  table-fake-caption: { kind: violation, criteria: ["1.3.1"] } # experimental: not run
+  target-size: { kind: violation, criteria: ["2.5.8"] }
+  td-has-header: { kind: violation, criteria: ["1.3.1"] } # experimental: not run
+  td-headers-attr: { kind: violation, criteria: ["1.3.1"] }
+  th-has-data-cells: { kind: violation, criteria: ["1.3.1"] }
+  valid-lang: { kind: violation, criteria: ["3.1.2"] }
+  video-caption: { kind: violation, criteria: ["1.2.2"] }
+
+custom:
+  cr-accessibility-statement: { kind: review, criteria: [] }
+  cr-skip-link: { kind: violation, criteria: ["2.4.1"] }
+  cr-lang-regional: { kind: violation, criteria: ["3.1.2"] }
+  cr-captcha-alternative: { kind: review, criteria: ["1.1.1", "3.3.8"] }
+  cr-session-timeout: { kind: review, criteria: ["2.2.1"] }
+  cr-pdf-links: { kind: review, criteria: [] }
+  cr-video-captions: { kind: review, criteria: ["1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5"] }
+  cr-focus-visible: { kind: violation, criteria: ["2.4.7"] }
+  # Target size (WCAG 2.5.8) is covered by axe-core's own target-size rule above, which also
+  # applies the spacing and inline-link exceptions; a custom duplicate would report every
+  # target twice. See DECISIONS.md.

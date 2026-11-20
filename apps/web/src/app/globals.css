@@ -1,0 +1,12 @@
+/*
+ * Automatic source detection is off: it also picked up Next's dev log under .next/, which
+ * changes on every request and caused an endless rebuild + reload loop in `next dev`.
+ * Tailwind scans only the folders listed here.
+ */
+@import "tailwindcss" source(none);
+@import "../../../../packages/ui/src/theme.css";
+
+@source "../app";
+@source "../components";
+@source "../lib";
+@source "../../../../packages/ui/src";

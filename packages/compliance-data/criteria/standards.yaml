@@ -1,0 +1,32 @@
+# Standards a conformance matrix, audit or report can be measured against (spec §2, §8).
+# The SEBI circular of 31 July 2025 references WCAG 2.1 Level AA (or later), GIGW and IS 17802.
+#
+# A WCAG standard selects criteria from wcag.yaml by version and level. GIGW and IS 17802
+# are placeholder catalogues in their own files and are marked for expert review.
+
+standards:
+  - id: wcag21aa
+    name: WCAG 2.1 Level AA
+    shortName: WCAG 2.1 AA
+    source: wcag
+    versions: ["2.0", "2.1"]
+    levels: [A, AA]
+    default: true
+
+  - id: wcag22aa
+    name: WCAG 2.2 Level AA
+    shortName: WCAG 2.2 AA
+    source: wcag
+    versions: ["2.0", "2.1", "2.2"]
+    levels: [A, AA]
+    excludeObsoleteIn: "2.2"
+
+  - id: gigw3
+    name: GIGW 3.0 (Guidelines for Indian Government Websites and Apps)
+    shortName: GIGW 3.0
+    source: gigw3
+
+  - id: is17802
+    name: "IS 17802 (Part 1): 2021 — Accessibility for ICT products and services"
+    shortName: IS 17802
+    source: is17802

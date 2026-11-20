@@ -1,0 +1,61 @@
+# IS 17802 (Part 1): 2021 — PLACEHOLDER CONTENT, PENDING EXPERT REVIEW.
+#
+# Placeholder requirements written from public summaries of the standard, not from its text.
+# Clause numbers are deliberately not given until an IAAP-certified reviewer has checked them
+# against the published standard (spec §2, §23). Every screen and report that shows these
+# entries says "Pending expert review".
+
+standard: is17802
+title: "IS 17802 (Part 1): 2021 — Accessibility for ICT products and services"
+review: pending_expert_review
+reviewNote: >-
+  Placeholder requirements written from public summaries of IS 17802. Clause numbers, wording
+  and mappings must be confirmed against the published standard by an IAAP-certified
+  reviewer.
+
+requirements:
+  - id: is17802-web
+    clause: To be confirmed
+    title: Web content requirements
+    summary: >-
+      Requirements for web pages, expected to correspond to the WCAG 2.1 Level A and AA
+      success criteria.
+    relatedStandard: wcag21aa
+    automatable: partial
+    steps:
+      - Complete the WCAG 2.1 AA manual tests for this property.
+      - Confirm the mapping to the standard's web clauses with the expert reviewer.
+
+  - id: is17802-documents
+    clause: To be confirmed
+    title: Non-web documents
+    summary: >-
+      Requirements for documents such as PDFs (statements, contract notes, disclosures),
+      expected to apply the WCAG criteria to documents.
+    relatedRules: [cr-pdf-links]
+    automatable: partial
+    steps:
+      - List the investor-facing documents (statements, contract notes, disclosures, forms).
+      - Check a sample for tags, reading order, headings, table structure and alternative text.
+
+  - id: is17802-software
+    clause: To be confirmed
+    title: Software and mobile apps
+    summary: >-
+      Requirements for software, including mobile trading and investor apps. Android scanning
+      arrives in a later phase; record manual results until then.
+    automatable: none
+    steps:
+      - Test the main app journeys (sign-in, KYC, orders, statements) with TalkBack.
+      - Check text scaling to 200% and the app's behaviour in both orientations.
+
+  - id: is17802-support
+    clause: To be confirmed
+    title: Documentation and support services
+    summary: >-
+      Product documentation and support services (help pages, call centres, chat) offer
+      accessible formats and communication methods.
+    automatable: none
+    steps:
+      - Check help and FAQ pages meet the web requirements.
+      - Check support can be reached by at least one channel that does not require speech.

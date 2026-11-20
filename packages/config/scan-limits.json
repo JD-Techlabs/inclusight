@@ -1,0 +1,7 @@
+{
+  "maxPagesPerScan": 1000,
+  "unverifiedMaxPagesPerScan": 1,
+  "unverifiedScansPerHourPerOrg": 10,
+  "crawlDelayMs": 500,
+  "scanPageConcurrency": 3
+}

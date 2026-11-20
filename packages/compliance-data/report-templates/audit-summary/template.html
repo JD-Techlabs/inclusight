@@ -1,0 +1,106 @@
+{% layout "_layout.html" %}
+{% block content %}
+{% render "_partials/organisation.html", organisation: organisation %}
+
+<h2>Audit</h2>
+<dl class="facts">
+  <dt>Audit</dt>
+  <dd>{{ audit.title }}</dd>
+  <dt>Auditor</dt>
+  <dd>{{ audit.auditorName }}</dd>
+  <dt>IAAP certification</dt>
+  <dd>{{ audit.iaapCertId }}</dd>
+  <dt>Auditor's organisation</dt>
+  <dd>{{ audit.auditorOrg }}</dd>
+  <dt>Dates</dt>
+  <dd>{{ audit.dates }}</dd>
+  <dt>Status</dt>
+  <dd>{{ audit.status }}</dd>
+  <dt>Standard</dt>
+  <dd>{{ audit.standard }}</dd>
+</dl>
+
+<h2>Scope</h2>
+<ul>
+  {% for p in audit.scope %}<li>{{ p.name }} ({{ p.url }})</li>{% endfor %}
+</ul>
+
+<h2>Methodology</h2>
+<p>
+  Automated testing: each platform in scope was crawled and every page was tested with axe-core and
+  the A11yComply custom rules, on desktop and mobile screen sizes. Identical issues on pages built
+  from the same template were grouped into one finding.
+</p>
+<p>
+  Manual testing: criteria that automated checks cannot decide were tested by hand using the
+  A11yComply test procedures (keyboard-only use, screen readers, zoom and reflow, captions, forms
+  and error handling), with a result, notes and evidence recorded for each criterion.
+</p>
+{% for paragraph in audit.methodology %}<p>{{ paragraph }}</p>{% endfor %}
+
+<h2>Findings by severity</h2>
+<table>
+  <caption>WCAG findings by severity</caption>
+  <thead>
+    <tr>
+      <th scope="col">Severity</th>
+      <th scope="col" class="num">Unresolved</th>
+      <th scope="col" class="num">Fixed</th>
+      <th scope="col" class="num">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in severity %}
+    <tr>
+      <th scope="row">{{ row.severity }}</th>
+      <td class="num">{{ row.unresolved }}</td>
+      <td class="num">{{ row.fixed }}</td>
+      <td class="num">{{ row.total }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<p>Unresolved includes findings accepted as a risk. False positives are excluded.</p>
+
+<h2>Unresolved findings by criterion</h2>
+{% if criteria.size == 0 %}
+<p>No unresolved findings.</p>
+{% else %}
+<table>
+  <caption>Unresolved findings for each WCAG criterion</caption>
+  <thead>
+    <tr>
+      <th scope="col">Criterion</th>
+      <th scope="col" class="num">Confirmed issues</th>
+      <th scope="col" class="num">Need review</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in criteria %}
+    <tr>
+      <th scope="row">{{ row.criterion }}</th>
+      <td class="num">{{ row.violations }}</td>
+      <td class="num">{{ row.reviews }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+
+<h2>Manual testing</h2>
+<p>
+  Manual results recorded: {{ manualTesting.tested }} of {{ manualTesting.total }}
+  (criteria × platforms). Evidence files attached: {{ manualTesting.evidenceFiles }}.
+</p>
+
+<h2>Conformance</h2>
+<p>
+  Supports: the criterion is met. Partially supports: some content does not meet it. Does not
+  support: a manual test failed. Not applicable: the content does not use what the criterion is
+  about. Not evaluated: not yet tested by hand. A criterion where automated checks found issues is
+  never reported as fully supported.
+</p>
+{% for table in conformance %}
+{% render "_partials/conformance.html", table: table %}
+{% endfor %}
+{% endblock %}

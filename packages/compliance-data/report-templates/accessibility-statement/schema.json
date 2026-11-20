@@ -1,0 +1,165 @@
+{
+  "title": "Accessibility statement: template data",
+  "description": "Generated from packages/reports/src/schemas.ts by `pnpm --filter @app/reports schemas:write`. Do not edit by hand.",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "lang": {
+          "type": "string",
+          "const": "en"
+        },
+        "period": {
+          "type": "string"
+        },
+        "generatedOn": {
+          "type": "string"
+        },
+        "generatedBy": {
+          "type": "string"
+        },
+        "draft": {
+          "type": "boolean"
+        },
+        "draftNote": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "automatedNote": {
+          "type": "string"
+        },
+        "certificationNote": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "title",
+        "lang",
+        "period",
+        "generatedOn",
+        "generatedBy",
+        "draft",
+        "draftNote",
+        "automatedNote",
+        "certificationNote",
+        "notes"
+      ],
+      "additionalProperties": false
+    },
+    "organisationName": {
+      "type": "string"
+    },
+    "property": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "url"
+      ],
+      "additionalProperties": false
+    },
+    "standard": {
+      "type": "string"
+    },
+    "conformance": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "string"
+        },
+        "sentence": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "level",
+        "sentence"
+      ],
+      "additionalProperties": false
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "criterion": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "criterion",
+          "description"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "extraLimitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "method": {
+      "type": "string"
+    },
+    "contact": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "responseDays": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "email",
+        "phone",
+        "responseDays"
+      ],
+      "additionalProperties": false
+    },
+    "preparedOn": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "meta",
+    "organisationName",
+    "property",
+    "standard",
+    "conformance",
+    "limitations",
+    "extraLimitations",
+    "method",
+    "contact",
+    "preparedOn"
+  ],
+  "additionalProperties": false
+}
